@@ -45,6 +45,7 @@ google-play-scraper==1.2.7
 googleapis-common-protos==1.63.2
 greenlet==3.0.3
 grpcio==1.65.4
+gunicorn
 h11==0.14.0
 h5py==3.11.0
 html5lib==1.1
