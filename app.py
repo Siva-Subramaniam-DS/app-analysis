@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 # Load datasets
 playstore_data = pd.read_csv('googleplaystore.csv')
-applestore_data = pd.read_csv('applestore.csv')
+applestore_data = pd.read_csv('Applestore.csv')
 
 # Load feedback from text files
 def load_feedback():
