@@ -1,17 +1,16 @@
 from flask import Flask, render_template, request, jsonify
-import pandas as pd
+from flask_pymongo import PyMongo
 import random
+from bson import ObjectId  # Import ObjectId from bson
 from sentimental import get_sentiment
-from analysis import get_analysis_data
+from analysis import load_and_process_data
 
 app = Flask(__name__)
 
+# Configure MongoDB connection
+app.config["MONGO_URI"] = "mongodb://localhost:27017/Store"  # Database name 'store'
+mongo = PyMongo(app)
 
-# Load datasets
-playstore_data = pd.read_csv('googleplaystore.csv')
-applestore_data = pd.read_csv('applestore.csv')
-
-# Load feedback from text files
 def load_feedback():
     with open('positive.txt', 'r') as file:
         positive_feedback = [line.strip() for line in file.readlines()]
@@ -22,27 +21,55 @@ def load_feedback():
 positive_feedback, negative_feedback = load_feedback()
 
 def get_top_playstore_apps():
-    top_apps = playstore_data[['App', 'Reviews']].copy()
-    top_apps['Reviews'] = top_apps['Reviews'].astype(str)  # Convert to string
-    top_apps['Reviews'] = top_apps['Reviews'].str.replace(',', '').str.replace('+', '')
-    top_apps['Reviews'] = pd.to_numeric(top_apps['Reviews'], errors='coerce')
-    top_apps = top_apps.dropna(subset=['Reviews'])
-    top_apps = top_apps.drop_duplicates(subset=['App'])  # Remove duplicate apps
-    top_apps = top_apps.sort_values(by='Reviews', ascending=False).head(10)
-    return top_apps.to_dict(orient='records')
+    db = mongo.db
+    playstore_collection = db.googleplaystore  # Collection name 'googleplaystore'
+
+    # Use an aggregation pipeline to get the top 10 unique apps by Reviews
+    pipeline = [
+        {"$sort": {"Reviews": -1}},  # Sort by Reviews in descending order
+        {"$group": {
+            "_id": "$App",  # Group by the 'App' field to ensure uniqueness
+            "App": {"$first": "$App"},  # Get the first occurrence of the App
+            "Reviews": {"$first": "$Reviews"},  # Get the first occurrence of Reviews
+            "Category": {"$first": "$Category"},  # Include other fields as needed
+            "Rating": {"$first": "$Rating"},
+            "Installs": {"$first": "$Installs"},
+            # Add more fields as needed
+        }},
+        {"$sort": {"Reviews": -1}},  # Sort the grouped result again by Reviews
+        {"$limit": 10}  # Limit the result to top 10
+    ]
+    
+    top_apps = playstore_collection.aggregate(pipeline)
+    return list(top_apps)
+
 
 def get_top_applestore_apps():
-    top_apps = applestore_data[['track_name', 'rating_count_tot']].copy()
-    top_apps['rating_count_tot'] = pd.to_numeric(top_apps['rating_count_tot'], errors='coerce')
-    top_apps = top_apps.dropna(subset=['rating_count_tot'])
-    top_apps = top_apps.sort_values(by='rating_count_tot', ascending=False).head(10)
-    return top_apps.to_dict(orient='records')
+    db = mongo.db
+    applestore_collection = db.applestore  # Collection name 'applestore'
+    top_apps = applestore_collection.find().sort("rating_count_tot", -1).limit(10)
+    return list(top_apps)
 
-# Home route
+def convert_objectid_to_str(data):
+    """
+    Recursively convert ObjectId fields to strings in a list of dictionaries.
+    """
+    if isinstance(data, list):
+        for item in data:
+            convert_objectid_to_str(item)
+    elif isinstance(data, dict):
+        for key, value in data.items():
+            if isinstance(value, ObjectId):
+                data[key] = str(value)
+            elif isinstance(value, dict):
+                convert_objectid_to_str(value)
+            elif isinstance(value, list):
+                convert_objectid_to_str(value)
+    return data
+
 @app.route('/')
 def home():
     return render_template('home.html')
-
 
 @app.route('/app', methods=['GET', 'POST'])
 def index():
@@ -63,31 +90,32 @@ def index():
         store = request.form.get('store')
 
         if app_name and store:
+            db = mongo.db
             if store == 'playstore':
-                filtered_playstore = playstore_data[playstore_data['App'].str.contains(app_name, case=False, na=False)]
-                if not filtered_playstore.empty:
-                    playstore_info = filtered_playstore.iloc[0].to_dict()
+                filtered_playstore = db.googleplaystore.find_one({"App": {"$regex": app_name, "$options": "i"}})
+                if filtered_playstore:
+                    playstore_info = filtered_playstore
                     feedback_playstore = random.choice(positive_feedback + negative_feedback)
                     feedback_sentiment_playstore = get_sentiment(feedback_playstore)
                 else:
                     error_message = "App not found in Google Play Store."
 
             elif store == 'applestore':
-                filtered_applestore = applestore_data[applestore_data['track_name'].str.contains(app_name, case=False, na=False)]
-                if not filtered_applestore.empty:
-                    applestore_info = filtered_applestore.iloc[0].to_dict()
+                filtered_applestore = db.applestore.find_one({"track_name": {"$regex": app_name, "$options": "i"}})
+                if filtered_applestore:
+                    applestore_info = filtered_applestore
                     feedback_applestore = random.choice(positive_feedback + negative_feedback)
                     feedback_sentiment_applestore = get_sentiment(feedback_applestore)
                 else:
                     error_message = "App not found in Apple App Store."
 
             elif store == 'both':
-                filtered_playstore = playstore_data[playstore_data['App'].str.contains(app_name, case=False, na=False)]
-                filtered_applestore = applestore_data[applestore_data['track_name'].str.contains(app_name, case=False, na=False)]
+                filtered_playstore = db.googleplaystore.find_one({"App": {"$regex": app_name, "$options": "i"}})
+                filtered_applestore = db.applestore.find_one({"track_name": {"$regex": app_name, "$options": "i"}})
                 
-                if not filtered_playstore.empty and not filtered_applestore.empty:
-                    playstore_info = filtered_playstore.iloc[0].to_dict()
-                    applestore_info = filtered_applestore.iloc[0].to_dict()
+                if filtered_playstore and filtered_applestore:
+                    playstore_info = filtered_playstore
+                    applestore_info = filtered_applestore
                     comparison = True
                     feedback_playstore = random.choice(positive_feedback + negative_feedback)
                     feedback_applestore = random.choice(positive_feedback + negative_feedback)
@@ -95,9 +123,9 @@ def index():
                     feedback_sentiment_applestore = get_sentiment(feedback_applestore)
                     playstore_comparison = get_top_playstore_apps()
                     applestore_comparison = get_top_applestore_apps()
-                elif filtered_playstore.empty:
+                elif not filtered_playstore:
                     error_message = "App not found in Google Play Store."
-                elif filtered_applestore.empty:
+                elif not filtered_applestore:
                     error_message = "App not found in Apple App Store."
                 else:
                     error_message = "App not found in both stores."
@@ -122,7 +150,7 @@ def about_us():
 
 @app.route('/analysis')
 def analysis():
-    googleplay_data, applestore_data = get_analysis_data()
+    googleplay_data, applestore_data = load_and_process_data(mongo)
     return render_template(
         'analysis.html',
         googleplay_data=googleplay_data,
@@ -131,13 +159,21 @@ def analysis():
 
 @app.route('/api/playstore_comparison')
 def api_playstore_comparison():
-    top_apps = get_top_playstore_apps()
-    return jsonify(top_apps)
+    try:
+        playstore_data = get_top_playstore_apps()
+        playstore_data = convert_objectid_to_str(playstore_data)
+        return jsonify(playstore_data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @app.route('/api/applestore_comparison')
 def api_applestore_comparison():
-    top_apps = get_top_applestore_apps()
-    return jsonify(top_apps)
+    try:
+        applestore_data = get_top_applestore_apps()
+        applestore_data = convert_objectid_to_str(applestore_data)
+        return jsonify(applestore_data)
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(debug=True)

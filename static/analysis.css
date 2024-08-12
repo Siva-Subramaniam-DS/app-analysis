@@ -32,13 +32,6 @@ header h1 {
     margin: 0;
 }
 
-#datetime {
-    display: flex;
-    width: 200px;
-    justify-content: space-between;
-    font-size: 1.1rem;
-}
-
 main {
     flex: 1;
     padding: 2rem;

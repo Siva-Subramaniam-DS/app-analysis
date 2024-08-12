@@ -1,99 +1,109 @@
-document.addEventListener('DOMContentLoaded', function () {
-    // Set the current date and time
-    function updateDateTime() {
-        const now = new Date();
-        const date = now.toLocaleDateString();
-        const time = now.toLocaleTimeString();
-
-        document.getElementById('date').textContent = date;
-        document.getElementById('time').textContent = time;
-    }
-
-    updateDateTime();
-    setInterval(updateDateTime, 1000); // Update every second
-
-    // Function to render Google Play Store chart
-    function renderGooglePlayChart(data) {
-        const ctxGoogleplay = document.getElementById('googleplayChart').getContext('2d');
-        new Chart(ctxGoogleplay, {
-            type: 'bar',
-            data: {
-                labels: data.map(app => app.App), // Assuming 'App' is the key for app names
-                datasets: [{
-                    label: 'Number of Reviews',
-                    data: data.map(app => app.Reviews), // Assuming 'Reviews' is the key for review counts
-                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            display: false
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    // Function to render Apple App Store chart
-    function renderAppleAppStoreChart(data) {
-        const ctxApplestore = document.getElementById('applestoreChart').getContext('2d');
-        new Chart(ctxApplestore, {
-            type: 'bar',
-            data: {
-                labels: data.map(app => app.track_name), // Assuming 'track_name' is the key for app names
-                datasets: [{
-                    label: 'Number of Ratings',
-                    data: data.map(app => app.rating_count_tot), // Assuming 'rating_count_tot' is the key for rating counts
-                    backgroundColor: 'rgba(153, 102, 255, 0.2)',
-                    borderColor: 'rgba(153, 102, 255, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        grid: {
-                            display: false
-                        }
-                    },
-                    x: {
-                        grid: {
-                            display: false
-                        }
-                    }
-                }
-            }
-        });
-    }
-
-    // Fetch data from the backend and render charts
-    async function fetchDataAndRenderCharts() {
-        try {
-            // Fetch data for Google Play Store
-            const responsePlayStore = await fetch('/api/playstore_comparison');
-            const dataPlayStore = await responsePlayStore.json();
-            renderGooglePlayChart(dataPlayStore);
-
-            // Fetch data for Apple App Store
-            const responseAppStore = await fetch('/api/applestore_comparison');
-            const dataAppStore = await responseAppStore.json();
-            renderAppleAppStoreChart(dataAppStore);
-        } catch (error) {
-            console.error('Error fetching data:', error);
+document.addEventListener("DOMContentLoaded", function() {
+    // Fetch Google Play Store data and render chart
+    fetch('/api/playstore_comparison')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
         }
-    }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Google Play Data:', data);
+        
+        // Transform data if necessary
+        const googlePlayLabels = data.map(item => item.label);
+        const googlePlayValues = data.map(item => item.value);
+        
+        if (googlePlayLabels.length && googlePlayValues.length) {
+            var ctx = document.getElementById('googleplayChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: googlePlayLabels,
+                    datasets: [{
+                        label: 'Google Play Store Genres',
+                        data: googlePlayValues,
+                        backgroundColor: [
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(201, 203, 207, 0.7)',
+                            'rgba(255, 99, 71, 0.7)',
+                            'rgba(144, 238, 144, 0.7)',
+                            'rgba(238, 130, 238, 0.7)'
+                        ],
+                        borderColor: 'rgba(0,0,0, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error('Google Play data is missing labels or data.');
+        }
+    })
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
 
-    fetchDataAndRenderCharts(); // Call the function to fetch data and render charts
+    // Fetch Apple App Store data and render chart
+    fetch('/api/applestore_comparison')
+    .then(response => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok.');
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Apple Store Data:', data);
+        
+        // Transform data if necessary
+        const appleStoreLabels = data.map(item => item.label);
+        const appleStoreValues = data.map(item => item.value);
+        
+        if (appleStoreLabels.length && appleStoreValues.length) {
+            var ctx = document.getElementById('applestoreChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: appleStoreLabels,
+                    datasets: [{
+                        label: 'Apple App Store Genres',
+                        data: appleStoreValues,
+                        backgroundColor: [
+                            'rgba(153, 102, 255, 0.7)',
+                            'rgba(238, 130, 238, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(54, 162, 235, 0.7)',
+                            'rgba(255, 99, 132, 0.7)',
+                            'rgba(255, 206, 86, 0.7)',
+                            'rgba(75, 192, 192, 0.7)',
+                            'rgba(255, 99, 71, 0.7)',
+                            'rgba(255, 159, 64, 0.7)',
+                            'rgba(54, 162, 235, 0.7)'
+                        ],
+                        borderColor: 'rgba(153, 102, 255, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        } else {
+            console.error('Apple Store data is missing labels or data.');
+        }
+    })
+    .catch(error => console.error('There was a problem with the fetch operation:', error));
 });

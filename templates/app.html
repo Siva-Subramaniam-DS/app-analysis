@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Compare app data and sentiment analysis for Google Play Store and Apple App Store.">
     <title>App Comparison</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='app.css') }}">
+    <link rel="stylesheet" href="static/app.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -27,7 +28,7 @@
         <form id="appForm" method="post" action="/app">
             <div class="form-group">
                 <label for="app_name">App Name:</label>
-                <input type="text" id="app_name" name="app_name" required>
+                <input type="text" id="app_name" name="app_name" required placeholder="Enter app name">
             </div>
             <div class="form-group">
                 <label for="store">Choose Store:</label>
@@ -91,6 +92,6 @@
     <footer>
         <p>&copy; 2024 Data Scientists</p>
     </footer>
-    <script src="static\app.js"></script>
+    <script src="static/app.js"></script>
 </body>
 </html>
