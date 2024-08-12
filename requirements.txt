@@ -16,6 +16,7 @@ contourpy==1.2.0
 cssselect2==0.7.0
 cycler==0.12.1
 dnspython==2.6.1
+eda-analysis==1.1.0
 et-xmlfile==1.1.0
 eventlet==0.36.1
 facenet-pytorch==2.5.3
@@ -25,6 +26,7 @@ filelock==3.13.1
 Flask==3.0.3
 Flask-Cors==4.0.1
 Flask-DebugToolbar==0.15.1
+Flask-PyMongo==2.3.0
 Flask-SocketIO==5.3.6
 Flask-SQLAlchemy==3.1.1
 Flask-WTF==1.2.1
@@ -45,7 +47,7 @@ google-play-scraper==1.2.7
 googleapis-common-protos==1.63.2
 greenlet==3.0.3
 grpcio==1.65.4
-gunicorn
+gunicorn==23.0.0
 h11==0.14.0
 h5py==3.11.0
 html5lib==1.1
@@ -80,6 +82,7 @@ packaging==23.2
 pandas==2.2.1
 pdfkit==1.0.0
 pillow==10.2.0
+plotly==5.23.0
 proto-plus==1.24.0
 protobuf==4.25.3
 pyarrow==15.0.1
@@ -89,6 +92,7 @@ pycparser==2.22
 pydeck==0.8.1b0
 pydyf==0.11.0
 Pygments==2.17.2
+pymongo==4.8.0
 pyparsing==3.1.2
 pyphen==0.16.0
 PySocks==1.7.1
@@ -121,6 +125,8 @@ sympy==1.12
 tenacity==8.2.3
 tensorboard==2.17.0
 tensorboard-data-server==0.7.2
+tensorflow==2.17.0
+tensorflow-intel==2.17.0
 termcolor==2.4.0
 textblob==0.18.0.post0
 threadpoolctl==3.4.0
