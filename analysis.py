@@ -4,9 +4,9 @@ def load_and_process_data(mongo):
     # Google Play Store
     playstore_collection = db.googleplaystore
 
-    # Get the top 10 genre counts, filtering out empty or None values
+    # Get the top 10 genre counts, filtering out documents where 'Category' is None, empty, or missing
     pipeline_playstore_genres = [
-        {"$match": {"Category": {"$ne": None, "$ne": ""}}},
+        {"$match": {"Category": {"$exists": True, "$ne": None, "$ne": ""}}},  # Ensure 'Category' exists and is not None or empty
         {"$group": {"_id": "$Category", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit": 10}  # Limit to top 10 genres
@@ -17,9 +17,9 @@ def load_and_process_data(mongo):
     # Apple App Store
     applestore_collection = db.applestore
 
-    # Get the top 10 genre counts
+    # Get the top 10 genre counts, filtering out documents where 'prime_genre' is None, empty, or missing
     pipeline_applestore_genres = [
-        {"$match": {"prime_genre": {"$ne": None, "$ne": ""}}},
+        {"$match": {"prime_genre": {"$exists": True, "$ne": None, "$ne": ""}}},  # Ensure 'prime_genre' exists and is not None or empty
         {"$group": {"_id": "$prime_genre", "count": {"$sum": 1}}},
         {"$sort": {"count": -1}},
         {"$limit": 10}  # Limit to top 10 genres
