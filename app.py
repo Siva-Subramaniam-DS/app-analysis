@@ -1,14 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
 import random
-from bson import ObjectId  # Import ObjectId from bson
+from bson import ObjectId
 from sentimental import get_sentiment
 from analysis import load_and_process_data
 
 app = Flask(__name__)
 
 # Configure MongoDB connection
-app.config["MONGO_URI"] = "mongodb://localhost:27017/Store"  # Database name 'store'
+app.config["MONGO_URI"] = "mongodb://localhost:27017/Store"
 mongo = PyMongo(app)
 
 def load_feedback():
@@ -22,38 +22,32 @@ positive_feedback, negative_feedback = load_feedback()
 
 def get_top_playstore_apps():
     db = mongo.db
-    playstore_collection = db.googleplaystore  # Collection name 'googleplaystore'
+    playstore_collection = db.googleplaystore
 
-    # Use an aggregation pipeline to get the top 10 unique apps by Reviews
     pipeline = [
-        {"$sort": {"Reviews": -1}},  # Sort by Reviews in descending order
+        {"$sort": {"Reviews": -1}},
         {"$group": {
-            "_id": "$App",  # Group by the 'App' field to ensure uniqueness
-            "App": {"$first": "$App"},  # Get the first occurrence of the App
-            "Reviews": {"$first": "$Reviews"},  # Get the first occurrence of Reviews
-            "Category": {"$first": "$Category"},  # Include other fields as needed
+            "_id": "$App",
+            "App": {"$first": "$App"},
+            "Reviews": {"$first": "$Reviews"},
+            "Category": {"$first": "$Category"},
             "Rating": {"$first": "$Rating"},
             "Installs": {"$first": "$Installs"},
-            # Add more fields as needed
         }},
-        {"$sort": {"Reviews": -1}},  # Sort the grouped result again by Reviews
-        {"$limit": 10}  # Limit the result to top 10
+        {"$sort": {"Reviews": -1}},
+        {"$limit": 10}
     ]
     
     top_apps = playstore_collection.aggregate(pipeline)
     return list(top_apps)
 
-
 def get_top_applestore_apps():
     db = mongo.db
-    applestore_collection = db.applestore  # Collection name 'applestore'
+    applestore_collection = db.applestore
     top_apps = applestore_collection.find().sort("rating_count_tot", -1).limit(10)
     return list(top_apps)
 
 def convert_objectid_to_str(data):
-    """
-    Recursively convert ObjectId fields to strings in a list of dictionaries.
-    """
     if isinstance(data, list):
         for item in data:
             convert_objectid_to_str(item)
@@ -144,36 +138,55 @@ def index():
         applestore_comparison=applestore_comparison
     )
 
+@app.route('/analysis')
+def analysis():
+    try:
+        data = load_and_process_data(mongo)
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+
+    return render_template(
+        'analysis.html',
+        playstore_genre_counts=data['playstore_genre_counts'],
+        applestore_genre_counts=data['applestore_genre_counts']
+    )
+
 @app.route('/about-us')
 def about_us():
     return render_template('about_us.html')
 
-@app.route('/analysis')
-def analysis():
-    googleplay_data, applestore_data = load_and_process_data(mongo)
-    return render_template(
-        'analysis.html',
-        googleplay_data=googleplay_data,
-        applestore_data=applestore_data
-    )
 
-@app.route('/api/playstore_comparison')
-def api_playstore_comparison():
-    try:
-        playstore_data = get_top_playstore_apps()
-        playstore_data = convert_objectid_to_str(playstore_data)
-        return jsonify(playstore_data)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+@app.route('/api/playstore_top_apps', methods=['GET'])
+def get_playstore_top_apps():
+    top_apps = get_top_playstore_apps()
+    return jsonify(convert_objectid_to_str(top_apps))
 
-@app.route('/api/applestore_comparison')
-def api_applestore_comparison():
+@app.route('/api/applestore_top_apps', methods=['GET'])
+def get_applestore_top_apps():
+    top_apps = get_top_applestore_apps()
+    return jsonify(convert_objectid_to_str(top_apps))
+
+
+@app.route('/api/playstore_genre_counts', methods=['GET'])
+def get_playstore_genre_counts():
     try:
-        applestore_data = get_top_applestore_apps()
-        applestore_data = convert_objectid_to_str(applestore_data)
-        return jsonify(applestore_data)
+        data = load_and_process_data(mongo)
+        return jsonify(data['playstore_genre_counts'])
+    except KeyError as e:
+        return jsonify({'error': f'KeyError: {str(e)}'}), 500
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({'error': str(e)}), 500
+
+@app.route('/api/applestore_genre_counts', methods=['GET'])
+def get_applestore_genre_counts():
+    try:
+        data = load_and_process_data(mongo)
+        return jsonify(data['applestore_genre_counts'])
+    except KeyError as e:
+        return jsonify({'error': f'KeyError: {str(e)}'}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
 
 if __name__ == '__main__':
     app.run(debug=True)

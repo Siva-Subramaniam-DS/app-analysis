@@ -12,12 +12,15 @@ function updateDateTime() {
     document.getElementById('time').textContent = time;
 }
 
+updateDateTime();
+setInterval(updateDateTime, 1000);
+
 function fetchDataAndRenderCharts() {
     const playstoreChartElement = document.getElementById('playstoreChart');
     const applestoreChartElement = document.getElementById('applestoreChart');
 
     if (playstoreChartElement) {
-        fetch('/api/playstore_comparison')
+        fetch('/api/playstore_top_apps')
             .then(response => response.json())
             .then(data => {
                 const labels = data.map(app => app.App);
@@ -30,7 +33,18 @@ function fetchDataAndRenderCharts() {
                         datasets: [{
                             label: 'Reviews',
                             data: reviews,
-                            backgroundColor: 'rgba(54, 162, 235, 0.7)',
+                            backgroundColor: [
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(238, 130, 238, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(255, 99, 71, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(54, 162, 235, 0.7)'
+                            ],
                             borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
                         }]
@@ -48,7 +62,7 @@ function fetchDataAndRenderCharts() {
     }
 
     if (applestoreChartElement) {
-        fetch('/api/applestore_comparison')
+        fetch('/api/applestore_top_apps')
             .then(response => response.json())
             .then(data => {
                 const labels = data.map(app => app.track_name);
@@ -61,7 +75,18 @@ function fetchDataAndRenderCharts() {
                         datasets: [{
                             label: 'Rating Count',
                             data: ratingCounts,
-                            backgroundColor: 'rgba(255, 159, 64, 0.7)',
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.7)',
+                                'rgba(54, 162, 235, 0.7)',
+                                'rgba(75, 192, 192, 0.7)',
+                                'rgba(255, 206, 86, 0.7)',
+                                'rgba(153, 102, 255, 0.7)',
+                                'rgba(255, 159, 64, 0.7)',
+                                'rgba(201, 203, 207, 0.7)',
+                                'rgba(255, 99, 71, 0.7)',
+                                'rgba(144, 238, 144, 0.7)',
+                                'rgba(238, 130, 238, 0.7)'
+                            ],
                             borderColor: 'rgba(153, 102, 255, 1)',
                             borderWidth: 1
                         }]

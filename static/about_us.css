@@ -33,7 +33,7 @@ header h1 {
     display: flex;
     width: 200px;
     justify-content: space-between;
-    font-size: 0.9rem;
+    font-size: 1.1rem; /* Adjust font size */
 }
 
 nav {

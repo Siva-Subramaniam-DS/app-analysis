@@ -3,13 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top 10 App Store Genres Analysis</title>
-    <link rel="stylesheet" href="static/analysis.css">
+    <title>Genre Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='analysis.css') }}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header>
         <h1>Sentiment App Analysis Website</h1>
+        <p id="datetime">
+            <span id="date"></span>
+            <span id="time"></span>
+        </p>
     </header>
     <nav>
         <ul>
@@ -19,21 +23,22 @@
             <li><a href="/about-us">About Us</a></li>
         </ul>
     </nav>
-    <main>
-        <h1>Top 10 App Store Genres for Google Play and Apple App Store</h1>
-        <div class="chart-container">
+    <h1>Top 10 Genres in Google Play Store and Apple App Store</h1>
+
+    <div id="charts">
+        <div id="playstore-chart-container">
             <h2>Google Play Store</h2>
-            <canvas id="googleplayChart" width="400" height="200"></canvas>
+            <canvas id="playstoreChart"></canvas>
         </div>
-        <div class="chart-container">
+        <div id="applestore-chart-container">
             <h2>Apple App Store</h2>
-            <canvas id="applestoreChart" width="400" height="200"></canvas>
+            <canvas id="applestoreChart"></canvas>
         </div>
-    </main>
+    </div>
+
     <footer>
         <p>&copy; 2024 Data Scientists</p>
     </footer>
-
-    <script src="static\analysis.js"></script>
+    <script src="{{ url_for('static', filename='analysis.js') }}"></script>
 </body>
 </html>
