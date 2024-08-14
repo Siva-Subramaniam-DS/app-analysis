@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
 import random
 from bson import ObjectId
-from sentimental import get_sentiment
+from sentimental import get_sentiment, sample_feedback
 from analysis import load_and_process_data
 
 app = Flask(__name__)
@@ -90,7 +90,7 @@ def index():
                 if filtered_playstore:
                     playstore_info = filtered_playstore
                     feedback_playstore = random.choice(positive_feedback + negative_feedback)
-                    feedback_sentiment_playstore = get_sentiment(feedback_playstore)
+                    feedback_sentiment_playstore = get_sentiment([feedback_playstore])
                 else:
                     error_message = "App not found in Google Play Store."
 
@@ -99,7 +99,7 @@ def index():
                 if filtered_applestore:
                     applestore_info = filtered_applestore
                     feedback_applestore = random.choice(positive_feedback + negative_feedback)
-                    feedback_sentiment_applestore = get_sentiment(feedback_applestore)
+                    feedback_sentiment_applestore = get_sentiment([feedback_applestore])
                 else:
                     error_message = "App not found in Apple App Store."
 
@@ -113,8 +113,8 @@ def index():
                     comparison = True
                     feedback_playstore = random.choice(positive_feedback + negative_feedback)
                     feedback_applestore = random.choice(positive_feedback + negative_feedback)
-                    feedback_sentiment_playstore = get_sentiment(feedback_playstore)
-                    feedback_sentiment_applestore = get_sentiment(feedback_applestore)
+                    feedback_sentiment_playstore = sample_feedback()
+                    feedback_sentiment_applestore = sample_feedback()
                     playstore_comparison = get_top_playstore_apps()
                     applestore_comparison = get_top_applestore_apps()
                 elif not filtered_playstore:
