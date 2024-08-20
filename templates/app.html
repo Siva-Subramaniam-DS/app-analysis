@@ -21,6 +21,7 @@
             <li><a href="/">Home</a></li>
             <li><a href="/app">Comparison</a></li>
             <li><a href="/analysis">Analysis</a></li>
+            <li><a href="/eda">EDA Process</a></li>
             <li><a href="/about-us">About Us</a></li>
         </ul>
     </nav>
@@ -70,7 +71,7 @@
                             <h2>Apple App Store</h2>
                             <p><strong>App Name:</strong> {{ applestore_info['track_name'] }}</p>
                             <p><strong>Rating:</strong> {{ applestore_info['user_rating_ver'] }}</p>
-                            <p><strong>Size:</strong> {{ applestore_info['size_bytes'] }}</p>
+                            <p><strong>Size:</strong> {{ "%.2f" | format(applestore_info['size_bytes'] | int / (1024*1024)) }} MB</p>
                             <p><strong>Price:</strong> {{ applestore_info['price'] }}</p>
                             <p><strong>Version:</strong> {{ applestore_info['ver'] }}</p>
                             <p><strong>Feedback:</strong> {{ feedback_applestore }}</p>
