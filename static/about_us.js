@@ -1,11 +1,14 @@
 // Set the current date and time
         function updateDateTime() {
             const now = new Date();
-            const date = now.toLocaleDateString();
-            const time = now.toLocaleTimeString();
+        const dateElement = document.getElementById('date');
+        const timeElement = document.getElementById('time');
 
-            document.getElementById('date').textContent = date;
-            document.getElementById('time').textContent = time;
+        const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
+        const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+
+        dateElement.textContent = now.toLocaleDateString(undefined, optionsDate);
+        timeElement.textContent = now.toLocaleTimeString(undefined, optionsTime);
         }
 
         updateDateTime();
