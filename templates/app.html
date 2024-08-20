@@ -58,7 +58,7 @@
                             <h2>Google Play Store</h2>
                             <p><strong>App Name:</strong> {{ playstore_info['App'] }}</p>
                             <p><strong>Rating:</strong> {{ playstore_info['Rating'] }}</p>
-                            <p><strong>Size:</strong> {{ playstore_info['Size'] }}</p>
+                            <p><strong>Size:</strong> {{ "%.2f" | format(playstore_info['Size'] | int / (1024*1024))  }} MB</p>
                             <p><strong>Price:</strong> {{ playstore_info['Price'] }}</p>
                             <p><strong>App Version:</strong> {{ playstore_info['Current Ver'] }}</p>
                             <p><strong>Feedback:</strong> {{ feedback_playstore }}</p>
