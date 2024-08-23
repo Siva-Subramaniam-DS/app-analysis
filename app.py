@@ -1,9 +1,14 @@
 from flask import Flask, render_template, request, jsonify
 from flask_pymongo import PyMongo
+from pymongo import MongoClient
 import random
 from bson import ObjectId
-from sentimental import get_sentiment, sample_feedback
+from sentimental import get_sentiment
 from analysis import load_and_process_data
+from Eda import perform_eda
+from helobot import chain
+from langchain_ollama import OllamaLLM
+from langchain_core.prompts import ChatPromptTemplate
 
 app = Flask(__name__)
 
@@ -40,6 +45,14 @@ def get_top_playstore_apps():
     
     top_apps = playstore_collection.aggregate(pipeline)
     return list(top_apps)
+
+@app.route("/heloai", methods=["POST"])
+def heloai():
+    data = request.get_json()
+    user_input = data["question"]
+    context = ""  # Context can be stored and updated as per your needs
+    result = chain.invoke({"context": context, "question": user_input})
+    return jsonify({"answer": result})
 
 def get_top_applestore_apps():
     db = mongo.db
@@ -113,8 +126,8 @@ def index():
                     comparison = True
                     feedback_playstore = random.choice(positive_feedback + negative_feedback)
                     feedback_applestore = random.choice(positive_feedback + negative_feedback)
-                    feedback_sentiment_playstore = sample_feedback()
-                    feedback_sentiment_applestore = sample_feedback()
+                    feedback_sentiment_playstore = get_sentiment([feedback_playstore])
+                    feedback_sentiment_applestore = get_sentiment([feedback_applestore])
                     playstore_comparison = get_top_playstore_apps()
                     applestore_comparison = get_top_applestore_apps()
                 elif not filtered_playstore:
@@ -155,6 +168,25 @@ def analysis():
 def about_us():
     return render_template('about_us.html')
 
+@app.route('/eda')
+def eda():
+    try:
+        # Perform EDA
+        eda_results = perform_eda(mongo.cx)  # mongo.cx returns the client instance
+    except Exception as e:
+        return f"An error occurred: {str(e)}"
+    
+    return render_template('eda.html', 
+                           playstore_accuracy=eda_results['playstore_accuracy'], 
+                           playstore_report=eda_results['playstore_report'], 
+                           applestore_accuracy=eda_results['applestore_accuracy'], 
+                           applestore_report=eda_results['applestore_report'])
+    
+    
+@app.route("/helobot")
+def helobot():
+    return render_template("helobot.html")    
+
 
 @app.route('/api/playstore_top_apps', methods=['GET'])
 def get_playstore_top_apps():
@@ -165,7 +197,6 @@ def get_playstore_top_apps():
 def get_applestore_top_apps():
     top_apps = get_top_applestore_apps()
     return jsonify(convert_objectid_to_str(top_apps))
-
 
 @app.route('/api/playstore_genre_counts', methods=['GET'])
 def get_playstore_genre_counts():
@@ -186,7 +217,6 @@ def get_applestore_genre_counts():
         return jsonify({'error': f'KeyError: {str(e)}'}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
 
 if __name__ == '__main__':
     app.run(debug=True)
