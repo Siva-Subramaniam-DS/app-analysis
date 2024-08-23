@@ -17,11 +17,13 @@
         </div>
     </header>
     <nav class="navbar">
-        <ul class="navbar-list">
-            <li><a href="/" class="navbar-link active">Home</a></li>
-            <li><a href="/app" class="navbar-link">Comparison</a></li>
-            <li><a href="/analysis" class="navbar-link">Analysis</a></li>
-            <li><a href="/about-us" class="navbar-link">About Us</a></li>
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/app">Comparison</a></li>
+            <li><a href="/analysis">Analysis</a></li>
+            <li><a href="/eda">EDA Process</a></li>
+            <li><a href="/helobot">Your AI</a></li>
+            <li><a href="/about-us">About Us</a></li>
         </ul>
     </nav>
     <main class="main-content">
@@ -55,7 +57,6 @@
                     {% if playstore_info %}
                         <div class="store-info">
                             <h2 class="store-title">Google Play Store</h2>
-                            <h2>Google Play Store</h2>
                             <p><strong>App Name:</strong> {{ playstore_info['App'] }}</p>
                             <p><strong>Rating:</strong> {{ playstore_info['Rating'] }}</p>
                             <p><strong>Size:</strong> 
