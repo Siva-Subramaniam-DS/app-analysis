@@ -25,26 +25,6 @@ def load_feedback():
 
 positive_feedback, negative_feedback = load_feedback()
 
-def get_top_playstore_apps():
-    db = mongo.db
-    playstore_collection = db.googleplaystore
-
-    pipeline = [
-        {"$sort": {"Reviews": -1}},
-        {"$group": {
-            "_id": "$App",
-            "App": {"$first": "$App"},
-            "Reviews": {"$first": "$Reviews"},
-            "Category": {"$first": "$Category"},
-            "Rating": {"$first": "$Rating"},
-            "Installs": {"$first": "$Installs"},
-        }},
-        {"$sort": {"Reviews": -1}},
-        {"$limit": 10}
-    ]
-    
-    top_apps = playstore_collection.aggregate(pipeline)
-    return list(top_apps)
 
 @app.route("/heloai", methods=["POST"])
 def heloai():
@@ -53,12 +33,6 @@ def heloai():
     context = ""  # Context can be stored and updated as per your needs
     result = chain.invoke({"context": context, "question": user_input})
     return jsonify({"answer": result})
-
-def get_top_applestore_apps():
-    db = mongo.db
-    applestore_collection = db.applestore
-    top_apps = applestore_collection.find().sort("rating_count_tot", -1).limit(10)
-    return list(top_apps)
 
 def convert_objectid_to_str(data):
     if isinstance(data, list):
@@ -128,8 +102,6 @@ def index():
                     feedback_applestore = random.choice(positive_feedback + negative_feedback)
                     feedback_sentiment_playstore = get_sentiment([feedback_playstore])
                     feedback_sentiment_applestore = get_sentiment([feedback_applestore])
-                    playstore_comparison = get_top_playstore_apps()
-                    applestore_comparison = get_top_applestore_apps()
                 elif not filtered_playstore:
                     error_message = "App not found in Google Play Store."
                 elif not filtered_applestore:
@@ -190,13 +162,23 @@ def helobot():
 
 @app.route('/api/playstore_top_apps', methods=['GET'])
 def get_playstore_top_apps():
-    top_apps = get_top_playstore_apps()
-    return jsonify(convert_objectid_to_str(top_apps))
+    try:
+        data = load_and_process_data(mongo)
+        return jsonify(data['playstore_top_apps'])
+    except KeyError as e:
+        return jsonify({'error': f'KeyError: {str(e)}'}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/applestore_top_apps', methods=['GET'])
 def get_applestore_top_apps():
-    top_apps = get_top_applestore_apps()
-    return jsonify(convert_objectid_to_str(top_apps))
+    try:
+        data = load_and_process_data(mongo)
+        return jsonify(data['applestore_top_apps'])
+    except KeyError as e:
+        return jsonify({'error': f'KeyError: {str(e)}'}), 500
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/api/playstore_genre_counts', methods=['GET'])
 def get_playstore_genre_counts():
@@ -217,6 +199,6 @@ def get_applestore_genre_counts():
         return jsonify({'error': f'KeyError: {str(e)}'}), 500
     except Exception as e:
         return jsonify({'error': str(e)}), 500
-
+    
 if __name__ == '__main__':
     app.run(debug=True)
