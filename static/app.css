@@ -2,7 +2,7 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
     background: linear-gradient(135deg, rgba(10, 10, 20, 0.9), rgba(50, 50, 70, 0.8)), 
-    url('img\Wallpaper.png') no-repeat center center fixed;
+                url('../img/_Sentiment App Analysis Website .jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
@@ -159,4 +159,7 @@ body {
     background-color: rgba(0, 0, 0, 0.6);
     border-top: 2px solid #444;
     color: #ccc;
+    position: relative;
+    bottom: 0;
+    width: 100%;
 }

@@ -5,14 +5,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function updateDateTime() {
     const now = new Date();
-        const dateElement = document.getElementById('date');
-        const timeElement = document.getElementById('time');
+    const dateElement = document.getElementById('date');
+    const timeElement = document.getElementById('time');
 
-        const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
-        const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
+    const optionsDate = { year: 'numeric', month: 'long', day: 'numeric' };
+    const optionsTime = { hour: '2-digit', minute: '2-digit', second: '2-digit' };
 
-        dateElement.textContent = now.toLocaleDateString(undefined, optionsDate);
-        timeElement.textContent = now.toLocaleTimeString(undefined, optionsTime);
+    dateElement.textContent = now.toLocaleDateString(undefined, optionsDate);
+    timeElement.textContent = now.toLocaleTimeString(undefined, optionsTime);
 }
 
 updateDateTime();
@@ -37,25 +37,33 @@ function fetchDataAndRenderCharts() {
                             label: 'Reviews',
                             data: reviews,
                             backgroundColor: [
-                                'rgba(153, 102, 255, 0.7)',
-                                'rgba(238, 130, 238, 0.7)',
-                                'rgba(255, 159, 64, 0.7)',
-                                'rgba(54, 162, 235, 0.7)',
-                                'rgba(255, 99, 132, 0.7)',
-                                'rgba(255, 206, 86, 0.7)',
-                                'rgba(75, 192, 192, 0.7)',
-                                'rgba(255, 99, 71, 0.7)',
-                                'rgba(255, 159, 64, 0.7)',
-                                'rgba(54, 162, 235, 0.7)'
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(238, 130, 238, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(255, 99, 71, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(54, 162, 235, 1)'
                             ],
-                            borderColor: 'rgba(75, 192, 192, 1)',
+                            borderColor: 'rgba(255, 255, 255, 1)',
                             borderWidth: 1
                         }]
                     },
                     options: {
                         scales: {
+                            x: {
+                                ticks: {
+                                    color: 'white' // X-axis labels color
+                                }
+                            },
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    color: 'white' // Y-axis labels color
+                                }
                             }
                         }
                     }
@@ -79,25 +87,33 @@ function fetchDataAndRenderCharts() {
                             label: 'Rating Count',
                             data: ratingCounts,
                             backgroundColor: [
-                                'rgba(255, 99, 132, 0.7)',
-                                'rgba(54, 162, 235, 0.7)',
-                                'rgba(75, 192, 192, 0.7)',
-                                'rgba(255, 206, 86, 0.7)',
-                                'rgba(153, 102, 255, 0.7)',
-                                'rgba(255, 159, 64, 0.7)',
-                                'rgba(201, 203, 207, 0.7)',
-                                'rgba(255, 99, 71, 0.7)',
-                                'rgba(144, 238, 144, 0.7)',
-                                'rgba(238, 130, 238, 0.7)'
+                                'rgba(255, 99, 132, 1)',
+                                'rgba(54, 162, 235, 1)',
+                                'rgba(75, 192, 192, 1)',
+                                'rgba(255, 206, 86, 1)',
+                                'rgba(153, 102, 255, 1)',
+                                'rgba(255, 159, 64, 1)',
+                                'rgba(201, 203, 207, 1)',
+                                'rgba(255, 99, 71, 1)',
+                                'rgba(144, 238, 144, 1)',
+                                'rgba(238, 130, 238, 1)'
                             ],
-                            borderColor: 'rgba(153, 102, 255, 1)',
+                            borderColor: 'rgba(255, 255, 255, 1)',
                             borderWidth: 1
                         }]
                     },
                     options: {
                         scales: {
+                            x: {
+                                ticks: {
+                                    color: 'black' // X-axis labels color
+                                }
+                            },
                             y: {
-                                beginAtZero: true
+                                beginAtZero: true,
+                                ticks: {
+                                    color: 'black' // Y-axis labels color
+                                }
                             }
                         }
                     }

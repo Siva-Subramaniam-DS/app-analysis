@@ -6,7 +6,6 @@
     <meta name="description" content="Compare app data and sentiment analysis for Google Play Store and Apple App Store.">
     <title>App Comparison</title>
     <link rel="stylesheet" href="static/app.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <header class="header">
@@ -17,13 +16,13 @@
         </div>
     </header>
     <nav class="navbar">
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/app">Comparison</a></li>
-            <li><a href="/analysis">Analysis</a></li>
-            <li><a href="/eda">EDA Process</a></li>
-            <li><a href="/helobot">Your AI</a></li>
-            <li><a href="/about-us">About Us</a></li>
+        <ul class="navbar-list">
+            <li><a href="/" class="navbar-link active">Home</a></li>
+            <li><a href="/app" class="navbar-link">App Search</a></li>
+            <li><a href="/analysis" class="navbar-link">Comparison</a></li>
+            <li><a href="/eda" class="navbar-link">EDA Process</a></li>
+            <li><a href="/helobot" class="navbar-link">Asst AI</a></li>
+            <li><a href="/about-us" class="navbar-link">About Us</a></li>
         </ul>
     </nav>
     <main class="main-content">
@@ -92,14 +91,6 @@
                         </div>
                     {% endif %}
                 </div>
-                
-                {% if comparison %}
-                    <div class="charts-container">
-                        <h2 class="comparison-title">Comparisons</h2>
-                        <canvas id="playstoreChart" class="chart"></canvas>
-                        <canvas id="applestoreChart" class="chart"></canvas>
-                    </div>
-                {% endif %}
             {% endif %}
         </div>
     </main>
