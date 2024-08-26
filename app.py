@@ -52,7 +52,7 @@ def convert_objectid_to_str(data):
 def home():
     return render_template('home.html')
 
-@app.route('/app', methods=['GET', 'POST'])
+@app.route('/AppSearch', methods=['GET', 'POST'])
 def index():
     app_info = None
     playstore_info = None
