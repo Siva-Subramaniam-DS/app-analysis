@@ -1,16 +1,16 @@
 # Table of Contents
-- [App.py](#apppy)
-- [App.html](#apphtml)
-- [App.js](#appjs)
-- [Analysis.py](#analysipy)
-- [Analysis.html](#analysishtml)
-- [Analysis.js](#analysisjs)
-- [EDA.py](#edapy)
-- [EDA.html](#edahtml)
-- [EDA.js](#edajs)
-- [HELOAI.py](#heloaipy)
-- [HELOAI.html](#heloaihtml)
-- [HELOAI.js](#heloaijs)
+- :blue_book: [App.py](#apppy)
+- :green_book: [App.html](#apphtml)
+- :orange_book: [App.js](#appjs)
+- :blue_book: [Analysis.py](#analysipy)
+- :green_book: [Analysis.html](#analysishtml)
+- :orange_book: [Analysis.js](#analysisjs)
+- :blue_book: [EDA.py](#edapy)
+- :green_book: [EDA.html](#edahtml)
+- :orange_book: [EDA.js](#edajs)
+- :blue_book: [HELOAI.py](#heloaipy)
+- :green_book: [HELOAI.html](#heloaihtml)
+- :orange_book: [HELOAI.js](#heloaijs)
 
 ___
 
