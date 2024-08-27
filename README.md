@@ -18,7 +18,7 @@ ___
 
 
 # App Search Code Structure.
-## `App.py`
+:open_book: ## `App.py`
 
 # 1. Configuration and Setup
 **Flask App Initialization:**  
