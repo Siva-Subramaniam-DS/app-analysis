@@ -1,5 +1,5 @@
 # App Search Code Structure.
-## App.py
+# `App.py`
 
 # 1. Configuration and Setup
 **Flask App Initialization:**  
@@ -72,7 +72,7 @@ The app runs in debug mode when executed directly.
 This Flask application allows users to search and compare apps between the Google Play Store and Apple App Store, analyze sentiment based on feedback, perform EDA, and interact with the HeloAI chatbot. It integrates MongoDB for data storage and retrieval, and it supports both HTML rendering and JSON-based API responses.
 
 ___
-# App.HTML
+# `App.HTML`
 
 # 1. HTML Structure
 ## Doctype and Meta Tags
@@ -123,6 +123,7 @@ ___
 - The use of `{% if %}` and `{% endif %}` allows for conditional rendering of content, such as displaying the comparison view only when apps from both stores are found.
 
 ___
+# 'App.JS'
 # JavaScript Code Explanation
 This JavaScript code is designed to perform two main tasks on your web page:
 
@@ -171,6 +172,8 @@ This HTML template is well-organized and integrates with the Flask backend to pr
 
 ___
 # Analysis Code Structure. 
+# `Analysis.py`
+
 ## `load_and_process_data` Function
 
 ### Purpose
@@ -197,5 +200,55 @@ The function returns a dictionary with the following keys:
 - **Usage**: Useful for generating reports, visualizations, and further analysis in a web application to help users make informed decisions.
 
 ___
+# `Analysis.html` 
+
+## Overview
+This HTML template is designed for the "Genre and App Analysis" page of a web application. It provides an overview of the top 10 genres and top 10 apps in both the Google Play Store and Apple App Store using Chart.js for visualizations.
+
+## Structure
+
+### 1. **DOCTYPE and Meta Tags**
+- `<!DOCTYPE html>`: Specifies the document type as HTML5.
+- `<meta charset="UTF-8">`: Sets the character encoding to UTF-8.
+- `<meta name="viewport" content="width=device-width, initial-scale=1.0">`: Ensures the page is responsive and scales properly on all devices.
+
+### 2. **Title and CSS/JavaScript Links**
+- `<title>Genre and App Analysis</title>`: Sets the title of the page.
+- `<link rel="stylesheet" href="{{ url_for('static', filename='analysis.css') }}">`: Links to an external CSS file for styling.
+- `<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>`: Includes the Chart.js library for rendering charts.
+
+### 3. **Header**
+- Contains the main title of the page and a section for displaying the current date and time.
+- `<header>`:
+  - `<h1>Sentiment App Analysis Website</h1>`
+  - `<p id="datetime">` with `<span id="date"></span>` and `<span id="time"></span>` for dynamic date and time display.
+
+### 4. **Navigation Bar**
+- Provides links to various sections of the application.
+- `<nav>`:
+  - `<ul>` with `<li>` elements for each navigation link: Home, App Search, Analysis, EDA Process, Helo AI, and About Us.
+
+### 5. **Main Content**
+- Displays charts and analysis results.
+- `<main>`:
+  - **Genres Analysis**:
+    - `<h1>Top 10 Genres in Google Play Store and Apple App Store</h1>`
+    - `<div id="charts">` containing two `<canvas>` elements for rendering genre charts.
+  - **Top Apps Analysis**:
+    - `<h1>Top 10 Apps</h1>`
+    - `<div id="charts">` containing two `<canvas>` elements for rendering top app charts.
+
+### 6. **Footer**
+- Contains a copyright notice.
+- `<footer>`:
+  - `<p>&copy; 2024 Data Scientists</p>`
+
+### 7. **JavaScript**
+- Links to an external JavaScript file for handling chart rendering and dynamic content.
+- `<script src="{{ url_for('static', filename='analysis.js') }}"></script>`
+
+## Notes
+- Ensure that the `analysis.css` and `analysis.js` files are correctly placed in the `static` directory and that the Chart.js library is included.
+- The `{{ url_for('static', filename='...') }}` syntax is used for generating the correct URL for static files in Flask applications.
 
 
