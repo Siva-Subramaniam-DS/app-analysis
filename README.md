@@ -1,16 +1,17 @@
 # Table of Contents
-- [App.py](#apppy)
-- [App.html](#apphtml)
-- [App.js](#appjs)
-- [Analysis.py](#analysipy)
-- [Analysis.html](#analysishtml)
-- [Analysis.js](#analysisjs)
-- [EDA.py](#edapy)
-- [EDA.html](#edahtml)
-- [EDA.js](#edajs)
-- [HELOAI.py](#heloaipy)
-- [HELOAI.html](#heloaihtml)
-- [HELOAI.js](#heloaijs)
+
+- ![Python](https://example.com/path/to/python-icon.png) [App.py](#apppy)
+- ![HTML](https://example.com/path/to/html-icon.png) [App.html](#apphtml)
+- ![JavaScript](https://example.com/path/to/js-icon.png) [App.js](#appjs)
+- ![Python](https://example.com/path/to/python-icon.png) [Analysis.py](#analysipy)
+- ![HTML](https://example.com/path/to/html-icon.png) [Analysis.html](#analysishtml)
+- ![JavaScript](https://example.com/path/to/js-icon.png) [Analysis.js](#analysisjs)
+- ![Python](https://example.com/path/to/python-icon.png) [EDA.py](#edapy)
+- ![HTML](https://example.com/path/to/html-icon.png) [EDA.html](#edahtml)
+- ![JavaScript](https://example.com/path/to/js-icon.png) [EDA.js](#edajs)
+- ![Python](https://example.com/path/to/python-icon.png) [HELOAI.py](#heloaipy)
+- ![HTML](https://example.com/path/to/html-icon.png) [HELOAI.html](#heloaihtml)
+- ![JavaScript](https://example.com/path/to/js-icon.png) [HELOAI.js](#heloaijs)
 
 ___
 
