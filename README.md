@@ -132,11 +132,10 @@ This JavaScript code is designed to perform two main tasks on your web page:
 The updateDateTime function gets the current date and time, formats it, and then updates the corresponding HTML elements (#date and #time) every second.
 The updateDateTime function is initially called when the DOM is fully loaded, and then continuously updates the date and time using setInterval.
 
-Fetch and Render Charts for App Store Data:
+``` Fetch and Render Charts for App Store Data: ```
 The fetchDataAndRenderCharts function is used to fetch data from API endpoints for both Google Play Store and Apple App Store, and then render bar charts using Chart.js.
 
 ``` Google Play Store Chart:```
-
 The data is fetched from the /api/playstore_top_apps endpoint.
 A bar chart is rendered showing the number of reviews for the top apps.
 
