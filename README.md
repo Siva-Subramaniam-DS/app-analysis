@@ -1,7 +1,7 @@
 # Table of Contents :round_pushpin:
-- :blue_book: [App.py](#apppy)
-- :green_book: [App.html](#apphtml)
-- :orange_book: [App.js](#appjs)
+- [App.py](#apppy)   :blue_book:
+- [App.html](#apphtml)
+- [App.js](#appjs)
 - :blue_book: [Analysis.py](#analysipy)
 - :green_book: [Analysis.html](#analysishtml)
 - :orange_book: [Analysis.js](#analysisjs)
