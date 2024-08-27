@@ -88,7 +88,7 @@ The <title>App Comparison</title> sets the title of the page, which appears in t
 <link rel="stylesheet" href="static/app.css"> links an external CSS file for styling the page. This file is located in the static directory.
 
 ``` 2. Header: ```
-The <header> element contains the title of the page and the current date and time, which are populated by JavaScript.
+The "header" element contains the title of the page and the current date and time, which are populated by JavaScript.
 The class header and header-title are applied for styling, as defined in the external CSS file.
 
 ``` 3. Navigation Bar: ``` 
@@ -97,7 +97,7 @@ Each link tag within the list directs the user to different routes in the applic
 The navbar-link class is used for styling, and the active class indicates the currently active page.
 
 ``` 4. Main Content: ```
-The <main> element wraps the main content of the page.
+The "main" element wraps the main content of the page.
 The <form> is used to search for an app in the Google Play Store or Apple App Store. The form data is sent via POST to the /AppSearch route.
 
 ``` Form Fields: ```
