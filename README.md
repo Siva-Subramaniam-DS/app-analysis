@@ -107,7 +107,7 @@ The form-button class is used to style the submit button.
 
 ``` Results Section: ```
 
-The " <div id="results"> " displays search results, including app information and sentiment analysis.
+The "div id="results"" displays search results, including app information and sentiment analysis.
 If an error occurs during the search (e.g., the app is not found), an error message is displayed.
 For each store (Google Play or Apple App Store), relevant information such as app name, rating, size, price, version, feedback, and sentiment analysis is displayed.
 
