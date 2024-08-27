@@ -373,3 +373,119 @@ ___
   - **Interval of 1000 milliseconds** (1 second): Calls `updateDateTime` every second to refresh the displayed time.
 
 ___
+# HELOAI Code Sturcture.
+## `HELOAI.py
+# Purpose
+
+- **Handle Conversation**: This script sets up a simple chatbot using `langchain_ollama` and `langchain_core` libraries. It interacts with users in a console environment, maintaining conversation context and providing responses based on a language model.
+
+# Key Components
+
+- **Imports**:
+  - `OllamaLLM` from `langchain_ollama`: Used for accessing the language model.
+  - `ChatPromptTemplate` from `langchain_core.prompts`: Used for creating a prompt template.
+
+- **Prompt Template**:
+  - **Purpose**: Defines the structure of the conversation prompt for the language model.
+  - **Template**:
+    ```plaintext
+    Answer the question below.
+
+    Here is the conversation history: {context}
+
+    Question: {question}
+
+    Answer:
+    ```
+  - **Context Placeholder**: `{context}` is used to insert the conversation history.
+  - **Question Placeholder**: `{question}` is used to insert the user's input.
+
+- **Model and Chain Setup**:
+  - **Model**: Initializes `OllamaLLM` with a model named `"llava"`.
+  - **Prompt Template**: Creates a `ChatPromptTemplate` using the defined template.
+  - **Chain**: Combines the prompt template with the model to form a processing chain.
+
+- **`handle_conversation` Function**:
+  - **Initialization**: Starts with an empty `context` string.
+  - **User Interaction**:
+    - Prompts the user for input and exits if the input is `"exit"`.
+    - **Processing**: Uses the `chain` to get a response from the model based on the current context and user input.
+    - **Update Context**: Appends the user input and model response to the `context`.
+
+- **Main Execution**:
+  - Calls `handle_conversation` to start the interactive session if the script is run directly.
+
+___
+## `HELOAI.HTML`
+# Purpose
+
+This HTML file defines the structure and layout for the "Lexi AI" chatbot interface, including a header, navigation bar, and chat container. It is designed to be used in a web application that integrates with the Helo AI chatbot.
+
+# Key Components
+
+- **HTML Structure**:
+  - **Header**:
+    - **Class `header`**: Contains the main title of the page.
+    - **Class `header-title`**: Displays the page title "Sentiment App Analysis".
+    - **Class `header-datetime`**: Displays the current date and time.
+  - **Navigation Bar**:
+    - **Class `navbar`**: Contains links to different sections of the web application.
+    - Links include Home, App Search, Analysis, EDA Process, Helo AI, and About Us.
+  - **Chat Container**:
+    - **Class `chat-container`**: Wraps the chat interface components.
+    - **Class `chat-header`**: Displays the chatbot title "Lexi AI".
+    - **Class `chat-box`**: The area where chat history is displayed. Messages will be dynamically added here.
+    - **Class `chat-input-container`**: Contains input field and send button for user interaction.
+      - **Input Field**: Allows users to type their messages.
+      - **Send Button**: Sends the user's message.
+
+- **CSS and JavaScript**:
+  - **CSS**:
+    - **Link**: The `helobot.css` file is linked for styling the page.
+  - **JavaScript**:
+    - **Script**: The `helobot.js` file is included for functionality related to the chatbot.
+
+___
+## `HELOAI.JS`
+# Purpose
+
+This JavaScript file handles the functionality of the chatbot interface on the "Lexi AI" page, including sending messages, displaying responses, and updating the date and time.
+
+# Key Components
+
+- **Function `sendMessage()`**:
+  - **Purpose**: Sends the user's input to the backend, displays the user message, shows a typing indicator, and then appends the response from the chatbot.
+  - **Steps**:
+    - Retrieves and trims user input.
+    - Appends the user message to the chat box.
+    - Shows a typing indicator.
+    - Sends a POST request to `/heloai` with the user's question.
+    - Removes the typing indicator and appends the chatbot's response upon receiving it.
+    - Clears the user input field.
+
+- **Event Listeners**:
+  - **Send Button Click**: Calls `sendMessage()` when the "Send" button is clicked.
+  - **Enter Key Press**: Calls `sendMessage()` when the "Enter" key is pressed in the input field, preventing the default action.
+
+- **Function `appendMessage(sender, message)`**:
+  - **Purpose**: Appends a message to the chat box with a specified sender.
+  - **Steps**:
+    - Creates a new `div` element for the message.
+    - Sets the class based on the sender (`user-message` or `lexi-message`).
+    - Sets the text content and appends the message to the chat box.
+    - Scrolls the chat box to the bottom.
+
+- **Function `showTypingIndicator()`**:
+  - **Purpose**: Displays a typing indicator when the chatbot is processing a response.
+  - **Steps**:
+    - Creates a `div` element with an ID of `typing-indicator`.
+    - Sets the class and text content to show that the chatbot is typing.
+    - Appends the typing indicator to the chat box.
+    - Scrolls the chat box to the bottom.
+
+- **Function `removeTypingIndicator()`**:
+  - **Purpose**: Removes the typing indicator once the chatbot response is received.
+  - **
+
+___
+
