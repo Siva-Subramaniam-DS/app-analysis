@@ -98,7 +98,7 @@ The navbar-link class is used for styling, and the active class indicates the cu
 
 ``` 4. Main Content: ```
 The "main" element wraps the main content of the page.
-The <form> is used to search for an app in the Google Play Store or Apple App Store. The form data is sent via POST to the /AppSearch route.
+The "form" is used to search for an app in the Google Play Store or Apple App Store. The form data is sent via POST to the /AppSearch route.
 
 ``` Form Fields: ```
 app_name: A text input field for entering the app name.
@@ -116,7 +116,7 @@ The <footer> contains a copyright notice and is styled using the footer class.
 The footer is positioned at the bottom of the page, ensuring consistent layout regardless of the amount of content.
 
 ``` 6. JavaScript: ```
-<script src="static/app.js"></script> links to an external JavaScript file located in the static directory, which likely contains scripts for handling the date and time display and other interactive features on the page.
+"script source "static/app.js"" links to an external JavaScript file located in the static directory, which likely contains scripts for handling the date and time display and other interactive features on the page.
 
 ``` 7. Templating and Dynamic Content: ```
 The page uses Jinja2 templating (e.g., {{ playstore_info['App'] }}) to inject dynamic content from the Flask backend into the HTML. This allows for server-side rendering of app data, sentiment results, and error messages based on the user's input.
