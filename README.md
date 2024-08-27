@@ -1,7 +1,7 @@
 # App Search Code Structure.
 ## App.py
-# 1. Configuration and Setup
 
+# 1. Configuration and Setup
 **Flask App Initialization:**  
 The Flask app is initialized with `app = Flask(__name__)`.  
 MongoDB is configured with `app.config["MONGO_URI"] = "mongodb://localhost:27017/Store"`, and PyMongo is used to connect to the MongoDB instance.
@@ -11,7 +11,6 @@ MongoDB is configured with `app.config["MONGO_URI"] = "mongodb://localhost:27017
 This feedback is used later for sentiment analysis.
 
 # 2. Routes and Functionality
-
 ## Home Route (/)
 **@app.route('/')**: This route serves the homepage, rendering the `home.html` template.
 
@@ -45,7 +44,6 @@ Renders the results in the `eda.html` template, displaying accuracy and classifi
 Renders the web interface for HeloAI by serving the `helobot.html` template.
 
 # 3. API Routes
-
 ## API for Play Store Top Apps (/api/playstore_top_apps)
 **@app.route('/api/playstore_top_apps', methods=['GET'])**:  
 Returns a JSON response with the top apps in the Google Play Store.
@@ -63,20 +61,17 @@ Returns a JSON response with genre counts for the Google Play Store.
 Returns a JSON response with genre counts for the Apple App Store.
 
 # 4. Helper Functions
-
 **Convert ObjectId to String:**  
 `convert_objectid_to_str(data)` converts MongoDB ObjectId fields to strings for JSON serialization.
 
 # 5. Running the App
-
 **if __name__ == '__main__':**  
 The app runs in debug mode when executed directly.
 
 # Summary
-
 This Flask application allows users to search and compare apps between the Google Play Store and Apple App Store, analyze sentiment based on feedback, perform EDA, and interact with the HeloAI chatbot. It integrates MongoDB for data storage and retrieval, and it supports both HTML rendering and JSON-based API responses.
 
-
+___
 
 
 
