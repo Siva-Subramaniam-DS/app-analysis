@@ -276,4 +276,100 @@ ___
 - Logs errors to the console if data fetching fails.
 
 ____
+# EDA Process Sturcture.
+## `EDA.py`
+# Purpose
 
+- **Perform EDA and Model Training**: This script connects to a MongoDB database, fetches data from Google Play Store and Apple App Store collections, performs data cleaning, and trains RandomForest models to predict app categories or genres.
+
+# Key Components
+
+- **MongoDB Connection**: Connects to MongoDB to retrieve data from `googleplaystore` and `applestore` collections.
+- **Data Cleaning and Conversion**:
+  - **Google Play Store**: Cleans and converts size, installs, and rating columns; removes duplicates.
+  - **Apple App Store**: Cleans and converts user rating and price; removes duplicates.
+- **Data Preparation**:
+  - **Google Play Store**: Prepares data for model training by selecting top apps and encoding categorical variables.
+  - **Apple App Store**: Prepares data similarly and selects top apps based on rating count.
+- **Model Training**:
+  - **Google Play Store**: Trains a RandomForestClassifier to predict app categories.
+  - **Apple App Store**: Trains a RandomForestClassifier to predict app genres.
+- **Accuracy and Results**:
+  - Computes and returns model accuracy for both datasets.
+  - Generates HTML reports of the top apps for both Google Play Store and Apple App Store.
+
+# Data Cleaning Functions
+
+- **convert_size**: Converts size strings to bytes.
+- **convert_installs**: Converts install counts to integers.
+- **convert_rating**: Converts rating strings to floats.
+- **convert_apple_rating**: Converts Apple Store ratings to floats.
+- **convert_apple_price**: Converts Apple Store prices to floats.
+
+# Error Handling
+
+- **Empty DataFrames**: Raises errors if data fetching results in empty DataFrames after cleaning.
+- **Insufficient Samples**: Raises errors if there are not enough samples to perform train-test split.
+
+# Example Usage
+
+- **MongoDB Client Creation**: Creates a MongoDB client and performs EDA, printing the results.
+
+___
+## `EDA.HTML`
+# Purpose
+
+- **Display EDA Results**: This HTML file is designed to show the results of Exploratory Data Analysis (EDA) for Google Play Store and Apple App Store, including model accuracy and top apps.
+
+# Key Components
+
+- **Meta Information**:
+  - **Charset and Viewport**: Sets character encoding to UTF-8 and viewport for responsive design.
+  - **Description**: Provides a brief description of the page's content.
+
+- **Header**:
+  - **Title**: Displays the main heading for the website.
+  - **Date and Time**: Shows current date and time dynamically.
+
+- **Navigation Bar**:
+  - **Links**: Provides navigation links to other sections of the website.
+
+- **Main Content**:
+  - **Results Section**: Displays EDA results, including model accuracy and top 10 apps for both Google Play Store and Apple App Store.
+    - **Google Play Store**: Shows accuracy and a table of top apps if data is available.
+    - **Apple App Store**: Shows accuracy and a table of top apps if data is available.
+
+- **Footer**:
+  - **Copyright Information**: Provides copyright notice.
+
+- **Scripts**:
+  - **Chart.js**: Includes Chart.js library for potential chart rendering.
+  - **Custom JS**: Includes a custom JavaScript file for additional functionality.
+
+# Template Rendering
+
+- **Dynamic Content**: Uses Jinja2 templating to insert dynamic content (`playstore_accuracy`, `playstore_report`, `applestore_accuracy`, `applestore_report`) into the HTML.
+
+___
+## `EDA.JS`
+# Purpose
+
+- **Update Date and Time**: This script updates and displays the current date and time on the webpage. The time is updated every second to keep the display current.
+
+# Key Components
+
+- **DOMContentLoaded Event**: Ensures the JavaScript code runs only after the HTML document has been completely loaded and parsed.
+
+- **`updateDateTime` Function**:
+  - **Fetches Current Date and Time**: Uses the `Date` object to get the current date and time.
+  - **Formats Date and Time**:
+    - **Date**: Formats to "year month day" (e.g., "August 27, 2024").
+    - **Time**: Formats to "hour:minute:second" (e.g., "15:45:12").
+  - **Updates HTML Elements**:
+    - **Date Element**: Sets the text content of the element with id `date`.
+    - **Time Element**: Sets the text content of the element with id `time`.
+
+- **`setInterval` Function**:
+  - **Interval of 1000 milliseconds** (1 second): Calls `updateDateTime` every second to refresh the displayed time.
+
+___
