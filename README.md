@@ -11,7 +11,7 @@ This feedback is used later for sentiment analysis.
 
 ``` 2. Routes and Functionality ```
 Home Route (/)
-@app.route('/'): This route serves the homepage, rendering the home.html template.
+``` @app.route('/'): ``` This route serves the homepage, rendering the home.html template.
 App Search and Comparison (/AppSearch)
 
 ``` @app.route('/AppSearch', methods=['GET', 'POST']): ```
@@ -44,19 +44,19 @@ Renders the web interface for HeloAI by serving the helobot.html template.
 
 ``` 3. API Routes ``` 
 API for Play Store Top Apps (/api/playstore_top_apps)
-@app.route('/api/playstore_top_apps', methods=['GET']):
+``` @app.route('/api/playstore_top_apps', methods=['GET']): ```
 Returns a JSON response with the top apps in the Google Play Store.
 API for App Store Top Apps (/api/applestore_top_apps)
 
-@app.route('/api/applestore_top_apps', methods=['GET']):
+``` @app.route('/api/applestore_top_apps', methods=['GET']): ```
 Returns a JSON response with the top apps in the Apple App Store.
 API for Play Store Genre Counts (/api/playstore_genre_counts)
 
-@app.route('/api/playstore_genre_counts', methods=['GET']):
+``` @app.route('/api/playstore_genre_counts', methods=['GET']): ```
 Returns a JSON response with genre counts for the Google Play Store.
 API for App Store Genre Counts (/api/applestore_genre_counts)
 
-@app.route('/api/applestore_genre_counts', methods=['GET']):
+``` @app.route('/api/applestore_genre_counts', methods=['GET']): ```
 Returns a JSON response with genre counts for the Apple App Store.
 
 ``` 4. Helper Functions ```
@@ -125,8 +125,8 @@ The use of {% if %} and {% endif %} allows for conditional rendering of content,
 This HTML template is well-organized and integrates with the Flask backend to provide a seamless experience for users searching for app information and sentiment analysis. The external CSS and JavaScript files help maintain a clean separation of concerns for styling and interactivity.
 
 
-** This JavaScript code is designed to perform two main tasks on your web page: **
-Display the Current Date and Time:
+This JavaScript code is designed to perform two main tasks on your web page:
+``` Display the Current Date and Time: ```
 
 The updateDateTime function gets the current date and time, formats it, and then updates the corresponding HTML elements (#date and #time) every second.
 The updateDateTime function is initially called when the DOM is fully loaded, and then continuously updates the date and time using setInterval.
@@ -134,39 +134,34 @@ The updateDateTime function is initially called when the DOM is fully loaded, an
 Fetch and Render Charts for App Store Data:
 The fetchDataAndRenderCharts function is used to fetch data from API endpoints for both Google Play Store and Apple App Store, and then render bar charts using Chart.js.
 
-Google Play Store Chart:
+``` Google Play Store Chart:```
 
 The data is fetched from the /api/playstore_top_apps endpoint.
 A bar chart is rendered showing the number of reviews for the top apps.
 
-Apple App Store Chart:
-
+``` Apple App Store Chart: ```
 The data is fetched from the /api/applestore_top_apps endpoint.
 A bar chart is rendered showing the total rating count for the top apps.
 
-Key Components of the Code:
+### Key Components of the Code:
 
-DOMContentLoaded Event:
-
+``` DOMContentLoaded Event: ```
 document.addEventListener('DOMContentLoaded', function () { ... }); ensures that the functions updateDateTime and fetchDataAndRenderCharts are executed only after the entire DOM has been loaded.
 
-updateDateTime Function:
-
+``` updateDateTime Function: ```
 The now object represents the current date and time.
 The toLocaleDateString and toLocaleTimeString methods are used to format the date and time based on the user's locale.
 The formatted date and time are then inserted into the respective HTML elements (#date and #time).
 
-Chart Rendering:
-
+```Chart Rendering: ```
 The fetchDataAndRenderCharts function checks if the HTML elements for the charts (#playstoreChart and #applestoreChart) are present on the page.
 If the element exists, it fetches data from the relevant API endpoint, processes the data, and uses Chart.js to create a bar chart.
 The charts' appearance (colors, labels, borders) and options (e.g., starting Y-axis at zero) are configured in the Chart object.
 
-Error Handling:
-
+``` Error Handling: ```
 The .catch(error => console.error('Error fetching ...')) segments log any errors that occur during the data fetching process.
 
-Integration Considerations:
+``` Integration Considerations: ```
 Ensure that the HTML elements with IDs #date, #time, #playstoreChart, and #applestoreChart exist in the HTML file where this JavaScript is being used.
 The Chart.js library should be included in the HTML file before this script is loaded.
 The APIs /api/playstore_top_apps and /api/applestore_top_apps should return data in a format that matches the expected structure in the script.
