@@ -503,9 +503,15 @@ This JavaScript file handles the functionality of the chatbot interface on the "
     - Appends the typing indicator to the chat box.
     - Scrolls the chat box to the bottom.
 
-- **Function `removeTypingIndicator()`**:
-  - **Purpose**: Removes the typing indicator once the chatbot response is received.
-  - **
+- **Function `updateDateTime()`**:
+  - **Purpose**: Updates the current date and time displayed on the page.
+  - **Steps**:
+    - Retrieves the current date and time.
+    - Formats and updates the date and time elements on the page.
+
+- **Initialization**:
+  - **`updateDateTime()`**: Called initially to set the current date and time.
+  - **`setInterval(updateDateTime, 1000)`**: Updates the date and time every second.
 
 ___
 
