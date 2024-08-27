@@ -1,4 +1,4 @@
-# Table of Contents
+# Table of Contents :round_pushpin:
 - :blue_book: [App.py](#apppy)
 - :green_book: [App.html](#apphtml)
 - :orange_book: [App.js](#appjs)
@@ -17,8 +17,8 @@ ___
 
 
 
-# App Search Code Structure.
-:open_book: ## `App.py`
+# App Search Code Structure. :open_file_folder:
+## `App.py` :open_book:
 
 # 1. Configuration and Setup
 **Flask App Initialization:**  
@@ -91,7 +91,7 @@ The app runs in debug mode when executed directly.
 This Flask application allows users to search and compare apps between the Google Play Store and Apple App Store, analyze sentiment based on feedback, perform EDA, and interact with the HeloAI chatbot. It integrates MongoDB for data storage and retrieval, and it supports both HTML rendering and JSON-based API responses.
 
 ___
-## `App.html`
+## `App.html` :open_book:
 
 # 1. HTML Structure
 ## Doctype and Meta Tags
@@ -142,7 +142,7 @@ ___
 - The use of `{% if %}` and `{% endif %}` allows for conditional rendering of content, such as displaying the comparison view only when apps from both stores are found.
 
 ___
-## `App.js`
+## `App.js` :open_book:
 # JavaScript Code Explanation
 This JavaScript code is designed to perform two main tasks on your web page:
 
@@ -190,8 +190,8 @@ This JavaScript code is designed to perform two main tasks on your web page:
 This HTML template is well-organized and integrates with the Flask backend to provide a seamless experience for users searching for app information and sentiment analysis. The external CSS and JavaScript files help maintain a clean separation of concerns for styling and interactivity.
 
 ___
-# Analysis Code Structure. 
-## `Analysis.py`
+# Analysis Code Structure. :open_file_folder:
+## `Analysis.py` :open_book:
 
 ## `load_and_process_data` Function
 
@@ -219,7 +219,7 @@ The function returns a dictionary with the following keys:
 - **Usage**: Useful for generating reports, visualizations, and further analysis in a web application to help users make informed decisions.
 
 ___
-## `Analysis.html` 
+## `Analysis.html` :open_book:
 
 ## Overview
 This HTML template is designed for the "Genre and App Analysis" page of a web application. It provides an overview of the top 10 genres and top 10 apps in both the Google Play Store and Apple App Store using Chart.js for visualizations.
@@ -271,7 +271,7 @@ This HTML template is designed for the "Genre and App Analysis" page of a web ap
 - The `{{ url_for('static', filename='...') }}` syntax is used for generating the correct URL for static files in Flask applications.
 
 ___
-## `Analysis.js`
+## `Analysis.js` :open_book:
 # Purpose
 
 - **Update Date and Time**: The code updates the date and time displayed on the webpage.
@@ -295,8 +295,8 @@ ___
 - Logs errors to the console if data fetching fails.
 
 ____
-# EDA Process Sturcture.
-## `EDA.py`
+# EDA Process Sturcture. :open_file_folder:
+## `EDA.py` :open_book:
 # Purpose
 
 - **Perform EDA and Model Training**: This script connects to a MongoDB database, fetches data from Google Play Store and Apple App Store collections, performs data cleaning, and trains RandomForest models to predict app categories or genres.
@@ -335,7 +335,7 @@ ____
 - **MongoDB Client Creation**: Creates a MongoDB client and performs EDA, printing the results.
 
 ___
-## `EDA.html`
+## `EDA.html` :open_book:
 # Purpose
 
 - **Display EDA Results**: This HTML file is designed to show the results of Exploratory Data Analysis (EDA) for Google Play Store and Apple App Store, including model accuracy and top apps.
@@ -370,7 +370,7 @@ ___
 - **Dynamic Content**: Uses Jinja2 templating to insert dynamic content (`playstore_accuracy`, `playstore_report`, `applestore_accuracy`, `applestore_report`) into the HTML.
 
 ___
-## `EDA.js`
+## `EDA.js` :open_book:
 # Purpose
 
 - **Update Date and Time**: This script updates and displays the current date and time on the webpage. The time is updated every second to keep the display current.
@@ -392,8 +392,8 @@ ___
   - **Interval of 1000 milliseconds** (1 second): Calls `updateDateTime` every second to refresh the displayed time.
 
 ___
-# HELOAI Code Sturcture.
-## `HELOAI.py
+# HELOAI Code Sturcture. :open_file_folder:
+## `HELOAI.py :open_book:
 # Purpose
 
 - **Handle Conversation**: This script sets up a simple chatbot using `langchain_ollama` and `langchain_core` libraries. It interacts with users in a console environment, maintaining conversation context and providing responses based on a language model.
@@ -435,7 +435,7 @@ ___
   - Calls `handle_conversation` to start the interactive session if the script is run directly.
 
 ___
-## `HELOAI.html`
+## `HELOAI.html` :open_book:
 # Purpose
 
 This HTML file defines the structure and layout for the "Lexi AI" chatbot interface, including a header, navigation bar, and chat container. It is designed to be used in a web application that integrates with the Helo AI chatbot.
@@ -465,7 +465,7 @@ This HTML file defines the structure and layout for the "Lexi AI" chatbot interf
     - **Script**: The `helobot.js` file is included for functionality related to the chatbot.
 
 ___
-## `HELOAI.js`
+## `HELOAI.js` :open_book:
 # Purpose
 
 This JavaScript file handles the functionality of the chatbot interface on the "Lexi AI" page, including sending messages, displaying responses, and updating the date and time.
