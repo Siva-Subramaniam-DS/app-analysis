@@ -138,12 +138,61 @@ ___
 - The use of `{% if %}` and `{% endif %}` allows for conditional rendering of content, such as displaying the comparison view only when apps from both stores are found.
 
 ___
+# JavaScript Code Explanation
+
+This JavaScript code is designed to perform two main tasks on your web page:
+
+## Display the Current Date and Time
+
+- **`updateDateTime` Function:**
+  - The `updateDateTime` function gets the current date and time, formats it, and then updates the corresponding HTML elements (`#date` and `#time`) every second.
+  - This function is initially called when the DOM is fully loaded, and then continuously updates the date and time using `setInterval`.
+
+## Fetch and Render Charts for App Store Data
+
+- **`fetchDataAndRenderCharts` Function:**
+  - This function fetches data from API endpoints for both the Google Play Store and Apple App Store and then renders bar charts using Chart.js.
+
+### Google Play Store Chart:
+
+- The data is fetched from the `/api/playstore_top_apps` endpoint.
+- A bar chart is rendered showing the number of reviews for the top apps.
+
+### Apple App Store Chart:
+
+- The data is fetched from the `/api/applestore_top_apps` endpoint.
+- A bar chart is rendered showing the total rating count for the top apps.
+
+## Key Components of the Code:
+
+### `DOMContentLoaded` Event:
+
+- `document.addEventListener('DOMContentLoaded', function () { ... });` ensures that the functions `updateDateTime` and `fetchDataAndRenderCharts` are executed only after the entire DOM has been loaded.
+
+### `updateDateTime` Function:
+
+- The `now` object represents the current date and time.
+- The `toLocaleDateString` and `toLocaleTimeString` methods are used to format the date and time based on the user's locale.
+- The formatted date and time are then inserted into the respective HTML elements (`#date` and `#time`).
+
+### Chart Rendering:
+
+- The `fetchDataAndRenderCharts` function checks if the HTML elements for the charts (`#playstoreChart` and `#applestoreChart`) are present on the page.
+- If the element exists, it fetches data from the relevant API endpoint, processes the data, and uses Chart.js to create a bar chart.
+- The charts' appearance (colors, labels, borders) and options (e.g., starting Y-axis at zero) are configured in the Chart object.
+
+### Error Handling:
+
+- The `.catch(error => console.error('Error fetching ...'))` segments log any errors that occur during the data fetching process.
+
+### Integration Considerations:
+
+- Ensure that the HTML elements with IDs `#date`, `#time`, `#playstoreChart`, and `#applestoreChart` exist in the HTML file where this JavaScript is being used.
+- The Chart.js library should be included in the HTML file before this script is loaded.
+- The APIs `/api/playstore_top_apps` and `/api/applestore_top_apps` should return data in a format that matches the expected structure in the script.
+
 
 This HTML template is well-organized and integrates with the Flask backend to provide a seamless experience for users searching for app information and sentiment analysis. The external CSS and JavaScript files help maintain a clean separation of concerns for styling and interactivity.
-
-
-
-
 
 ___
 # Analysis Code Structure. 
