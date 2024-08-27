@@ -290,7 +290,7 @@ ___
 - **Google Play Store**: Shows genre distribution and top apps by reviews.
 - **Apple App Store**: Displays genre distribution and top apps by rating count.
 
-# Error Handling v
+# Error Handling :paperclip:
 
 - Logs errors to the console if data fetching fails.
 
