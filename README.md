@@ -83,7 +83,7 @@ The <meta name="viewport" content="width=device-width, initial-scale=1.0"> ensur
 The <meta name="description" content="..."> provides a brief description of the web page's purpose.
 Title:
 
-** The <title>App Comparison</title> sets the title of the page, which appears in the browser tab. **
+The <title>App Comparison</title> sets the title of the page, which appears in the browser tab.
 ``` CSS Link: ```
 <link rel="stylesheet" href="static/app.css"> links an external CSS file for styling the page. This file is located in the static directory.
 
