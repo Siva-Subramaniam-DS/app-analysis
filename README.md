@@ -1,5 +1,5 @@
 # App Search Code Structure.
-# `App.py`
+## `App.py`
 
 # 1. Configuration and Setup
 **Flask App Initialization:**  
@@ -72,7 +72,7 @@ The app runs in debug mode when executed directly.
 This Flask application allows users to search and compare apps between the Google Play Store and Apple App Store, analyze sentiment based on feedback, perform EDA, and interact with the HeloAI chatbot. It integrates MongoDB for data storage and retrieval, and it supports both HTML rendering and JSON-based API responses.
 
 ___
-# `App.HTML`
+## `App.HTML`
 
 # 1. HTML Structure
 ## Doctype and Meta Tags
@@ -123,7 +123,7 @@ ___
 - The use of `{% if %}` and `{% endif %}` allows for conditional rendering of content, such as displaying the comparison view only when apps from both stores are found.
 
 ___
-# 'App.JS'
+## `App.JS`
 # JavaScript Code Explanation
 This JavaScript code is designed to perform two main tasks on your web page:
 
@@ -172,7 +172,7 @@ This HTML template is well-organized and integrates with the Flask backend to pr
 
 ___
 # Analysis Code Structure. 
-# `Analysis.py`
+## `Analysis.py`
 
 ## `load_and_process_data` Function
 
@@ -200,7 +200,7 @@ The function returns a dictionary with the following keys:
 - **Usage**: Useful for generating reports, visualizations, and further analysis in a web application to help users make informed decisions.
 
 ___
-# `Analysis.html` 
+## `Analysis.html` 
 
 ## Overview
 This HTML template is designed for the "Genre and App Analysis" page of a web application. It provides an overview of the top 10 genres and top 10 apps in both the Google Play Store and Apple App Store using Chart.js for visualizations.
@@ -251,4 +251,29 @@ This HTML template is designed for the "Genre and App Analysis" page of a web ap
 - Ensure that the `analysis.css` and `analysis.js` files are correctly placed in the `static` directory and that the Chart.js library is included.
 - The `{{ url_for('static', filename='...') }}` syntax is used for generating the correct URL for static files in Flask applications.
 
+___
+## `Analysis.JS`
+# Purpose
+
+- **Update Date and Time**: The code updates the date and time displayed on the webpage.
+- **Render Charts**: It fetches data from various API endpoints and renders charts for Google Play Store and Apple App Store genres and top apps.
+
+# Key Components
+
+- **DOM Content Loaded**: Ensures functions for updating the date/time and fetching data are executed after the page has fully loaded.
+- **Update Date and Time**: Uses the current date and time to populate specific HTML elements.
+- **Fetch Data and Render Charts**:
+  - Retrieves genre and top app data from APIs.
+  - Uses Chart.js to display data as charts on the page.
+
+# Chart Details
+
+- **Google Play Store**: Shows genre distribution and top apps by reviews.
+- **Apple App Store**: Displays genre distribution and top apps by rating count.
+
+# Error Handling
+
+- Logs errors to the console if data fetching fails.
+
+____
 
