@@ -91,7 +91,7 @@ The app runs in debug mode when executed directly.
 This Flask application allows users to search and compare apps between the Google Play Store and Apple App Store, analyze sentiment based on feedback, perform EDA, and interact with the HeloAI chatbot. It integrates MongoDB for data storage and retrieval, and it supports both HTML rendering and JSON-based API responses.
 
 ___
-## `App.html` :open_book:
+## `App.html`
 
 # 1. HTML Structure :paperclip:
 ## Doctype and Meta Tags
@@ -142,7 +142,7 @@ ___
 - The use of `{% if %}` and `{% endif %}` allows for conditional rendering of content, such as displaying the comparison view only when apps from both stores are found.
 
 ___
-## `App.js` :open_book:
+## `App.js` 
 # JavaScript Code Explanation :paperclip:
 This JavaScript code is designed to perform two main tasks on your web page:
 
@@ -191,7 +191,7 @@ This HTML template is well-organized and integrates with the Flask backend to pr
 
 ___
 # Analysis Code Structure. :open_file_folder: 
-## `Analysis.py` :open_book:
+## `Analysis.py` 
 
 ## `load_and_process_data` Function :paperclip:
 
@@ -219,7 +219,7 @@ The function returns a dictionary with the following keys:
 - **Usage**: Useful for generating reports, visualizations, and further analysis in a web application to help users make informed decisions.
 
 ___
-## `Analysis.html` :open_book:
+## `Analysis.html` 
 
 ## Overview :paperclip:
 This HTML template is designed for the "Genre and App Analysis" page of a web application. It provides an overview of the top 10 genres and top 10 apps in both the Google Play Store and Apple App Store using Chart.js for visualizations.
@@ -271,7 +271,7 @@ This HTML template is designed for the "Genre and App Analysis" page of a web ap
 - The `{{ url_for('static', filename='...') }}` syntax is used for generating the correct URL for static files in Flask applications.
 
 ___
-## `Analysis.js` :open_book:
+## `Analysis.js` 
 # Purpose :paperclip:
 
 - **Update Date and Time**: The code updates the date and time displayed on the webpage.
@@ -296,7 +296,7 @@ ___
 
 ____
 # EDA Process Sturcture. :open_file_folder:
-## `EDA.py` :open_book:
+## `EDA.py` 
 # Purpose :paperclip:
 
 - **Perform EDA and Model Training**: This script connects to a MongoDB database, fetches data from Google Play Store and Apple App Store collections, performs data cleaning, and trains RandomForest models to predict app categories or genres.
@@ -335,7 +335,7 @@ ____
 - **MongoDB Client Creation**: Creates a MongoDB client and performs EDA, printing the results.
 
 ___
-## `EDA.html` :open_book:
+## `EDA.html` 
 # Purpose :paperclip:
 
 - **Display EDA Results**: This HTML file is designed to show the results of Exploratory Data Analysis (EDA) for Google Play Store and Apple App Store, including model accuracy and top apps.
@@ -370,7 +370,7 @@ ___
 - **Dynamic Content**: Uses Jinja2 templating to insert dynamic content (`playstore_accuracy`, `playstore_report`, `applestore_accuracy`, `applestore_report`) into the HTML.
 
 ___
-## `EDA.js` :open_book:
+## `EDA.js` 
 # Purpose :paperclip:
 
 - **Update Date and Time**: This script updates and displays the current date and time on the webpage. The time is updated every second to keep the display current.
@@ -393,7 +393,7 @@ ___
 
 ___
 # HELOAI Code Sturcture. :open_file_folder:
-## `HELOAI.py :open_book:
+## `HELOAI.py 
 # Purpose :paperclip: 
 
 - **Handle Conversation**: This script sets up a simple chatbot using `langchain_ollama` and `langchain_core` libraries. It interacts with users in a console environment, maintaining conversation context and providing responses based on a language model.
@@ -435,7 +435,7 @@ ___
   - Calls `handle_conversation` to start the interactive session if the script is run directly.
 
 ___
-## `HELOAI.html` :open_book:
+## `HELOAI.html` 
 # Purpose :paperclip:
  
 This HTML file defines the structure and layout for the "Lexi AI" chatbot interface, including a header, navigation bar, and chat container. It is designed to be used in a web application that integrates with the Helo AI chatbot.
@@ -465,7 +465,7 @@ This HTML file defines the structure and layout for the "Lexi AI" chatbot interf
     - **Script**: The `helobot.js` file is included for functionality related to the chatbot.
 
 ___
-## `HELOAI.js` :open_book:
+## `HELOAI.js` 
 # Purpose :paperclip:
 
 This JavaScript file handles the functionality of the chatbot interface on the "Lexi AI" page, including sending messages, displaying responses, and updating the date and time.
