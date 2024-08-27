@@ -1,3 +1,24 @@
+# Table of Content
+- ## `App.py`
+- ## `App.html`
+- ## `App.js` 
+- ## `Analysis.py` 
+- ## `Analysis.html`
+- ## `Analysis.js`
+- ## `EDA.py`
+- ## `EDA.html`
+- ## `EDA.js`
+- ## `HELOAI.py`
+- ## `HELOAI.html`
+- ## `HELOAI.js`  
+
+___
+
+
+
+
+
+
 # App Search Code Structure.
 ## `App.py`
 
@@ -72,7 +93,7 @@ The app runs in debug mode when executed directly.
 This Flask application allows users to search and compare apps between the Google Play Store and Apple App Store, analyze sentiment based on feedback, perform EDA, and interact with the HeloAI chatbot. It integrates MongoDB for data storage and retrieval, and it supports both HTML rendering and JSON-based API responses.
 
 ___
-## `App.HTML`
+## `App.html`
 
 # 1. HTML Structure
 ## Doctype and Meta Tags
@@ -123,7 +144,7 @@ ___
 - The use of `{% if %}` and `{% endif %}` allows for conditional rendering of content, such as displaying the comparison view only when apps from both stores are found.
 
 ___
-## `App.JS`
+## `App.js`
 # JavaScript Code Explanation
 This JavaScript code is designed to perform two main tasks on your web page:
 
@@ -252,7 +273,7 @@ This HTML template is designed for the "Genre and App Analysis" page of a web ap
 - The `{{ url_for('static', filename='...') }}` syntax is used for generating the correct URL for static files in Flask applications.
 
 ___
-## `Analysis.JS`
+## `Analysis.js`
 # Purpose
 
 - **Update Date and Time**: The code updates the date and time displayed on the webpage.
@@ -316,7 +337,7 @@ ____
 - **MongoDB Client Creation**: Creates a MongoDB client and performs EDA, printing the results.
 
 ___
-## `EDA.HTML`
+## `EDA.html`
 # Purpose
 
 - **Display EDA Results**: This HTML file is designed to show the results of Exploratory Data Analysis (EDA) for Google Play Store and Apple App Store, including model accuracy and top apps.
@@ -351,7 +372,7 @@ ___
 - **Dynamic Content**: Uses Jinja2 templating to insert dynamic content (`playstore_accuracy`, `playstore_report`, `applestore_accuracy`, `applestore_report`) into the HTML.
 
 ___
-## `EDA.JS`
+## `EDA.js`
 # Purpose
 
 - **Update Date and Time**: This script updates and displays the current date and time on the webpage. The time is updated every second to keep the display current.
@@ -416,7 +437,7 @@ ___
   - Calls `handle_conversation` to start the interactive session if the script is run directly.
 
 ___
-## `HELOAI.HTML`
+## `HELOAI.html`
 # Purpose
 
 This HTML file defines the structure and layout for the "Lexi AI" chatbot interface, including a header, navigation bar, and chat container. It is designed to be used in a web application that integrates with the Helo AI chatbot.
@@ -446,7 +467,7 @@ This HTML file defines the structure and layout for the "Lexi AI" chatbot interf
     - **Script**: The `helobot.js` file is included for functionality related to the chatbot.
 
 ___
-## `HELOAI.JS`
+## `HELOAI.js`
 # Purpose
 
 This JavaScript file handles the functionality of the chatbot interface on the "Lexi AI" page, including sending messages, displaying responses, and updating the date and time.
