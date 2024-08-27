@@ -1,74 +1,74 @@
 # App Search Code Structure.
-
-``` 1. Configuration and Setup ```
-``` Flask App Initialization: ```
+## App.py
+``` 1. Configuration and Setup 
+**Flask App Initialization:**
 The Flask app is initialized with app = Flask(__name__).
 MongoDB is configured with app.config["MONGO_URI"] = "mongodb://localhost:27017/Store", and PyMongo is used to connect to the MongoDB instance. ```
 
-``` Load Feedback Data: ```
+**Load Feedback Data:**
 load_feedback() function reads positive and negative feedback from text files (positive.txt and negative.txt).
 This feedback is used later for sentiment analysis.
 
-``` 2. Routes and Functionality ```
-Home Route (/)
-``` @app.route('/'): ``` This route serves the homepage, rendering the home.html template.
+** 2. Routes and Functionality **
+**Home Route (/)**
+>@app.route('/'):  This route serves the homepage, rendering the home.html template.
 App Search and Comparison (/AppSearch)
 
-``` @app.route('/AppSearch', methods=['GET', 'POST']): ```
+>@app.route('/AppSearch', methods=['GET', 'POST']): 
 Handles form submissions to search for an app in either the Google Play Store, Apple App Store, or both.
 Based on the search, it queries the corresponding MongoDB collections (googleplaystore and applestore) using a case-insensitive regex.
 If the app is found, random feedback is selected from the loaded feedback data, and sentiment analysis is performed using the get_sentiment() function.
 The results are rendered on the app.html page.
 
-``` HeloAI Chatbot (/heloai) ```
-@app.route("/heloai", methods=["POST"]):
+**HeloAI Chatbot (/heloai)**
+>@app.route("/heloai", methods=["POST"]):
 This route accepts POST requests with user input (question), invokes the HeloAI chatbot using the chain.invoke() method, and returns the chatbot's response as a JSON object.
 Analysis Page (/analysis)
 
-``` @app.route('/analysis'): ```
+>@app.route('/analysis'):
 Loads and processes data using the load_and_process_data() function from the analysis module.
 Renders the analysis.html template with processed data such as genre counts for both stores.
 
-``` About Us Page (/about-us) ```
+>About Us Page (/about-us)
 @app.route('/about-us'):
 Renders the about_us.html template.
 Exploratory Data Analysis (EDA) Page (/eda)
 
-``` @app.route('/eda'): ```
+>@app.route('/eda'): 
 Performs EDA using the perform_eda() function from the Eda module, which analyzes the data in MongoDB.
 Renders the results in the eda.html template, displaying accuracy and classification reports for both stores.
 
-``` HeloAI Web Interface (/helobot) ```
-@app.route("/helobot"):
+**HeloAI Web Interface (/helobot)**
+>@app.route("/helobot"):
 Renders the web interface for HeloAI by serving the helobot.html template.
 
-``` 3. API Routes ``` 
+**3. API Routes**
 API for Play Store Top Apps (/api/playstore_top_apps)
-``` @app.route('/api/playstore_top_apps', methods=['GET']): ```
+>@app.route('/api/playstore_top_apps', methods=['GET']):
 Returns a JSON response with the top apps in the Google Play Store.
 API for App Store Top Apps (/api/applestore_top_apps)
 
-``` @app.route('/api/applestore_top_apps', methods=['GET']): ```
+>@app.route('/api/applestore_top_apps', methods=['GET']):
 Returns a JSON response with the top apps in the Apple App Store.
 API for Play Store Genre Counts (/api/playstore_genre_counts)
 
-``` @app.route('/api/playstore_genre_counts', methods=['GET']): ```
+>@app.route('/api/playstore_genre_counts', methods=['GET']):
 Returns a JSON response with genre counts for the Google Play Store.
 API for App Store Genre Counts (/api/applestore_genre_counts)
 
-``` @app.route('/api/applestore_genre_counts', methods=['GET']): ```
+>@app.route('/api/applestore_genre_counts', methods=['GET']):
 Returns a JSON response with genre counts for the Apple App Store.
 
-``` 4. Helper Functions ```
+**4. Helper Functions**
 Convert ObjectId to String:
 convert_objectid_to_str(data) converts MongoDB ObjectId fields to strings for JSON serialization.
 
-``` 5. Running the App ```
+**5. Running the App**
 if __name__ == '__main__':
 The app runs in debug mode when executed directly.
 
 
-``` Summary: ```
+**Summary:**
 This Flask application allows users to search and compare apps between the Google Play Store and Apple App Store, analyse sentiment based on feedback, perform EDA, and interact with the HeloAI chatbot. It integrates MongoDB for data storage and retrieval, and it supports both HTML rendering and JSON-based API responses.```
 
 
