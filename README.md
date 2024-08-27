@@ -92,9 +92,8 @@ The <header> element contains the title of the page and the current date and tim
 The class header and header-title are applied for styling, as defined in the external CSS file.
 
 ``` 3. Navigation Bar: ``` 
-The <nav> element contains a list of navigation links wrapped in '<ul>' and '<li>'
-tags.
-Each '<a>' tag within the list directs the user to different routes in the application, such as Home, App Search, Analysis, EDA Process, Helo AI, and About Us.
+The Navigation tag element contains a list of navigation links wrapped in UnderLine tag and Line tag.
+Each link tag within the list directs the user to different routes in the application, such as Home, App Search, Analysis, EDA Process, Helo AI, and About Us.
 The navbar-link class is used for styling, and the active class indicates the currently active page.
 
 ``` 4. Main Content: ```
