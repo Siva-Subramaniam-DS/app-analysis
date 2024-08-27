@@ -1,19 +1,18 @@
-# Table of Content
-- ## `App.py`
-- ## `App.html`
-- ## `App.js` 
-- ## `Analysis.py` 
-- ## `Analysis.html`
-- ## `Analysis.js`
-- ## `EDA.py`
-- ## `EDA.html`
-- ## `EDA.js`
-- ## `HELOAI.py`
-- ## `HELOAI.html`
-- ## `HELOAI.js`  
+# Table of Contents
+- [App.py](#apppy)
+- [App.html](#apphtml)
+- [App.js](#appjs)
+- [Analysis.py](#analysipy)
+- [Analysis.html](#analysishtml)
+- [Analysis.js](#analysisjs)
+- [EDA.py](#edapy)
+- [EDA.html](#edahtml)
+- [EDA.js](#edajs)
+- [HELOAI.py](#heloaipy)
+- [HELOAI.html](#heloaihtml)
+- [HELOAI.js](#heloaijs)
 
 ___
-
 
 
 
