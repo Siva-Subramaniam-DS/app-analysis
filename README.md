@@ -166,4 +166,5 @@ Ensure that the HTML elements with IDs #date, #time, #playstoreChart, and #apple
 The Chart.js library should be included in the HTML file before this script is loaded.
 The APIs /api/playstore_top_apps and /api/applestore_top_apps should return data in a format that matches the expected structure in the script.
 
-*------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*
+___
+
