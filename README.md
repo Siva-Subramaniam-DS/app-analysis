@@ -1,20 +1,18 @@
 # Table of Contents
-
-- ![Python](img/Python-logo-notext.svg) [App.py](#apppy)
-- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [App.html](#apphtml)
-- ![JavaScript](img/JavaScript-logo.png) [App.js](#appjs)
-- ![Python](img/Python-logo-notext.svg) [Analysis.py](#analysipy)
-- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [Analysis.html](#analysishtml)
-- ![JavaScript](img/JavaScript-logo.png) [Analysis.js](#analysisjs)
-- ![Python](img/Python-logo-notext.svg) [EDA.py](#edapy)
-- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [EDA.html](#edahtml)
-- ![JavaScript](img/JavaScript-logo.png) [EDA.js](#edajs)
-- ![Python](img/Python-logo-notext.svg) [HELOAI.py](#heloaipy)
-- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [HELOAI.html](#heloaihtml)
-- ![JavaScript](img/JavaScript-logo.png) [HELOAI.js](#heloaijs)
+- [App.py](#apppy)
+- [App.html](#apphtml)
+- [App.js](#appjs)
+- [Analysis.py](#analysipy)
+- [Analysis.html](#analysishtml)
+- [Analysis.js](#analysisjs)
+- [EDA.py](#edapy)
+- [EDA.html](#edahtml)
+- [EDA.js](#edajs)
+- [HELOAI.py](#heloaipy)
+- [HELOAI.html](#heloaihtml)
+- [HELOAI.js](#heloaijs)
 
 ___
-
 
 
 
