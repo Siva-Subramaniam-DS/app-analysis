@@ -104,9 +104,10 @@ The <form> is used to search for an app in the Google Play Store or Apple App St
 app_name: A text input field for entering the app name.
 store: Radio buttons allowing the user to choose between Google Play Store, Apple App Store, or both.
 The form-button class is used to style the submit button.
-Results Section:
 
-The <div id="results"> displays search results, including app information and sentiment analysis.
+``` Results Section: ```
+
+The " <div id="results"> " displays search results, including app information and sentiment analysis.
 If an error occurs during the search (e.g., the app is not found), an error message is displayed.
 For each store (Google Play or Apple App Store), relevant information such as app name, rating, size, price, version, feedback, and sentiment analysis is displayed.
 
