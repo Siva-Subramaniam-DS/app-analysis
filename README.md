@@ -1,17 +1,17 @@
 # Table of Contents
 
-- ![Python](https://example.com/path/to/python-icon.png) [App.py](#apppy)
-- ![HTML](https://example.com/path/to/html-icon.png) [App.html](#apphtml)
-- ![JavaScript](https://example.com/path/to/js-icon.png) [App.js](#appjs)
-- ![Python](https://example.com/path/to/python-icon.png) [Analysis.py](#analysipy)
-- ![HTML](https://example.com/path/to/html-icon.png) [Analysis.html](#analysishtml)
-- ![JavaScript](https://example.com/path/to/js-icon.png) [Analysis.js](#analysisjs)
-- ![Python](https://example.com/path/to/python-icon.png) [EDA.py](#edapy)
-- ![HTML](https://example.com/path/to/html-icon.png) [EDA.html](#edahtml)
-- ![JavaScript](https://example.com/path/to/js-icon.png) [EDA.js](#edajs)
-- ![Python](https://example.com/path/to/python-icon.png) [HELOAI.py](#heloaipy)
-- ![HTML](https://example.com/path/to/html-icon.png) [HELOAI.html](#heloaihtml)
-- ![JavaScript](https://example.com/path/to/js-icon.png) [HELOAI.js](#heloaijs)
+- ![Python](img/Python-logo-notext.svg) [App.py](#apppy)
+- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [App.html](#apphtml)
+- ![JavaScript](img/JavaScript-logo.png) [App.js](#appjs)
+- ![Python](img/Python-logo-notext.svg) [Analysis.py](#analysipy)
+- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [Analysis.html](#analysishtml)
+- ![JavaScript](img/JavaScript-logo.png) [Analysis.js](#analysisjs)
+- ![Python](img/Python-logo-notext.svg) [EDA.py](#edapy)
+- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [EDA.html](#edahtml)
+- ![JavaScript](img/JavaScript-logo.png) [EDA.js](#edajs)
+- ![Python](img/Python-logo-notext.svg) [HELOAI.py](#heloaipy)
+- ![HTML](img/HTML5_logo_and_wordmark.svg.png) [HELOAI.html](#heloaihtml)
+- ![JavaScript](img/JavaScript-logo.png) [HELOAI.js](#heloaijs)
 
 ___
 
