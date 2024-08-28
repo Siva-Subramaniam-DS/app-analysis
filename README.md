@@ -521,7 +521,7 @@ This gives you greater control over your data, allowing for secure and private A
 It’s particularly useful for organizations or individuals who need to deploy AI models in environments where internet access is limited or where data privacy is a major concern.
 ```
 
-## `Key Features of Ollama:` :paperclip:
+## `Key Features of Ollama:` :clipboard:
 
 `Local Model Execution `
 Ollama enables you to run LLMs directly on your local machine or a dedicated server. This reduces latency and eliminates the need for sending data to external servers, enhancing privacy.
@@ -541,7 +541,7 @@ By running models locally, you avoid ongoing cloud service fees, which can be es
 `Performance `
 Depending on the hardware, Ollama can deliver fast inference times, though this depends on the model size and the computational resources available.
 
-## `Use Cases:` :paperclip:
+## `Use Cases:` :clipboard:
 `On-premises AI Applications: ` 
 Ideal for organizations that require AI solutions within their own secure environment.
 
