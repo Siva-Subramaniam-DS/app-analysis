@@ -11,7 +11,7 @@
 - :blue_book: [HELOAI.py](#heloaipy)
 - :green_book: [HELOAI.html](#heloaihtml)
 - :orange_book: [HELOAI.js](#heloaijs)
-- 🦙 [WhyOllama](#WhyOllama)
+- 🦙 [WhyOllama](#whyollama)
 ___
 
 
