@@ -11,7 +11,8 @@
 - :blue_book: [HELOAI.py](#heloaipy)
 - :green_book: [HELOAI.html](#heloaihtml)
 - :orange_book: [HELOAI.js](#heloaijs)
-- 🦙 [WhyOllama](#whyollama)
+- 🦙 [Why Ollama](#why-ollama)
+
 ___
 
 
@@ -513,7 +514,7 @@ This JavaScript file handles the functionality of the chatbot interface on the "
   - **`setInterval(updateDateTime, 1000)`**: Updates the date and time every second.
 
 ___
-# Why Ollama
+# `Why Ollama `
 ```Ollama is a platform designed for running large language models (LLMs) locally on your own hardware, rather than relying on cloud-based services. This gives you greater control over your data, allowing for secure and private AI interactions. It’s particularly useful for organizations or individuals who need to deploy AI models in environments where internet access is limited or where data privacy is a major concern.```
 
 ## `Key Features of Ollama:` :paperclip:
